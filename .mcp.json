@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "softr": {
+      "type": "http",
+      "url": "https://mcp.softr.io/mcp"
+    }
+  }
+}
