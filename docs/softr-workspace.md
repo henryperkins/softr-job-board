@@ -281,7 +281,7 @@ Every returned page is enabled. Every returned block is enabled and available on
 
 The **View** setting is the page gate. Block visibility applies within that gate. A block marked All users on a page restricted to Logged in users does not make that page public.
 
-**Binding evidence:** `get_page` and `get_block` omit native datasource and action configuration. The custom-code settings tool rejects native blocks. Native read targets are confirmed only where the initial App MCP's `usedBlocks` identifies that exact block. Other native bindings are marked unknown or inferred. Static navigation/container/utility blocks have no table binding exposed. Account blocks use Softr's account service; their physical datasource mapping is not returned.
+**Binding evidence:** `get_page` and `get_block` omit native datasource and action configuration. The custom-code settings tool rejects native blocks. Native read targets are confirmed only where the initial App MCP's `usedBlocks` identifies that exact block. Other native bindings are marked unknown or inferred. Static navigation/container/utility blocks have no table binding exposed. Account blocks use Softr's account service. A follow-up `get_user_connection` read identifies the job board's user connection by an exact field-ID match to Users; individual account-block actions remain unexposed. See [User connections](#user-connections).
 
 ### AI Job Board & Draft Applications
 
@@ -293,7 +293,7 @@ Page `0647e3c5-2411-4bba-b41d-47ebaabeb929`; type `SIGN_UP`; **View: All users**
 
 | Block | Block ID | Type / category | Block visibility | Reads / connections | Writes / actions |
 | --- | --- | --- | --- | --- | --- |
-| user-accounts1 — Sign Up | `1f42d7e7-fac1-4a9e-a65b-e4737e438f13` | DYNAMIC / User Accounts | Non Logged in users | Softr account service; physical table mapping unknown | Account operation indicated by block type; detailed configuration unknown |
+| user-accounts1 — Sign Up | `1f42d7e7-fac1-4a9e-a65b-e4737e438f13` | DYNAMIC / User Accounts | Non Logged in users | Softr account service; Users connection (schema match) | Account operation indicated by block type; detailed configuration unknown |
 
 #### Page not found — `/404`
 
@@ -327,7 +327,7 @@ Page `4024b8cb-9fc6-4e14-89b6-d096939f7af4`; type `USER_ACCOUNT`; **View: Logged
 | Block | Block ID | Type / category | Block visibility | Reads / connections | Writes / actions |
 | --- | --- | --- | --- | --- | --- |
 | header1 — navigation | `3492a64e-cc7f-4798-916e-1176c223f422` | STATIC / Header | All users | No table binding exposed | No record action exposed |
-| user-accounts1 — Account Settings | `36fa5be1-2832-46d4-a951-37592e24e2e4` | DYNAMIC / User Accounts | Logged in users | Softr account service; physical table mapping unknown | Account operation indicated by block type; detailed configuration unknown |
+| user-accounts1 — Account Settings | `36fa5be1-2832-46d4-a951-37592e24e2e4` | DYNAMIC / User Accounts | Logged in users | Softr account service; Users connection (schema match) | Account operation indicated by block type; detailed configuration unknown |
 
 #### Job Details — `/job-details`
 
@@ -362,7 +362,7 @@ Page `98c99155-89c1-4a9c-96aa-4fd20febdfaa`; type `FORGOT_PASSWORD`; **View: All
 
 | Block | Block ID | Type / category | Block visibility | Reads / connections | Writes / actions |
 | --- | --- | --- | --- | --- | --- |
-| user-accounts1 — Forgot password | `227ee2f5-b37c-472a-94ab-7e67a527b343` | DYNAMIC / User Accounts | All users | Softr account service; physical table mapping unknown | Account operation indicated by block type; detailed configuration unknown |
+| user-accounts1 — Forgot password | `227ee2f5-b37c-472a-94ab-7e67a527b343` | DYNAMIC / User Accounts | All users | Softr account service; Users connection (schema match) | Account operation indicated by block type; detailed configuration unknown |
 
 #### Profile — `/profile`
 
@@ -381,7 +381,7 @@ Page `c45b6c29-81c1-4050-a6b4-8793f080727d`; type `RESET_PASSWORD`; **View: All 
 
 | Block | Block ID | Type / category | Block visibility | Reads / connections | Writes / actions |
 | --- | --- | --- | --- | --- | --- |
-| user-accounts1 — Reset password | `5189e373-0663-48db-82b2-425612c5d030` | DYNAMIC / User Accounts | All users | Softr account service; physical table mapping unknown | Account operation indicated by block type; detailed configuration unknown |
+| user-accounts1 — Reset password | `5189e373-0663-48db-82b2-425612c5d030` | DYNAMIC / User Accounts | All users | Softr account service; Users connection (schema match) | Account operation indicated by block type; detailed configuration unknown |
 
 #### 9136419c-df18-45f2-8821-ed6fa6993b3a — `/c7cdf289-efa8-4e65-b64b-847b9b60db22`
 
@@ -398,7 +398,7 @@ Page `de11ea45-f534-4fc1-a6c6-fc14636e0339`; type `LOG_IN`; **View: All users**.
 
 | Block | Block ID | Type / category | Block visibility | Reads / connections | Writes / actions |
 | --- | --- | --- | --- | --- | --- |
-| user-accounts1 — Sign In | `255ab587-5139-43c9-a734-86b23c7412d1` | DYNAMIC / User Accounts | Non Logged in users | Softr account service; physical table mapping unknown | Account operation indicated by block type; detailed configuration unknown |
+| user-accounts1 — Sign In | `255ab587-5139-43c9-a734-86b23c7412d1` | DYNAMIC / User Accounts | Non Logged in users | Softr account service; Users connection (schema match) | Account operation indicated by block type; detailed configuration unknown |
 
 #### Permission denied — `/401`
 
@@ -549,7 +549,18 @@ Every page returns **EDIT → All users** and the VIEW group listed below. No AD
 
 The job-board Sign Up and Sign In blocks additionally restrict themselves to Non Logged in users; Account Settings restricts itself to Logged in users. All other blocks use All users, within the page's VIEW gate.
 
-The six records in the Users table are datasource records; the builder tools do not enumerate the complete Softr authentication-user roster. Exact authentication-user count and activation states therefore remain unavailable. Users.Role has no choice labels and is independent of the three system groups.
+### User connections
+
+A follow-up read-only check on **2026-09-08** called `get_user_connection` once for each app. This tool exposes the connected user-field schema; it does not enumerate authentication accounts or individual account-block actions.
+
+| Application | User-connection result | Interpretation |
+| --- | --- | --- |
+| AI Job Board & Draft Applications | `integrationType=SOFTR_TABLES`; 14 fields | All 14 field IDs exactly match Users (`jlY4Kuae0x2iG7`), including Email (`c63tL`), Name (`o0JWv`), Avatar (`QH0S6`), and Role (`z0b2k`). The table association is established by schema comparison; the tool does not return a table name or ID. |
+| Untitled Form | `NOT_FOUND`: no users table connected | The tool explicitly reports that the app has no connected users table and cannot have condition-based user groups. Its existing predefined groups and stored page gates are still listed above. |
+
+The six records in the connected Users table are datasource records; the builder tools do not enumerate the complete Softr authentication-user roster. Exact authentication-user count and activation states therefore remain unavailable. Users.Role has no choice labels and is independent of the three system groups. Untitled Form's `/list`, `/onboarding`, `/item-details`, and `/form` routes require Logged in users despite having no user table connected. This is a configuration gap to review; no login flow was tested, and it does not establish that the public standalone form on `/` fails.
+
+### Global access-control summary
 
 | Application | Data restrictions count | User-group redirects count | Sign-up redirects count |
 | --- | --- | --- | --- |
@@ -674,6 +685,7 @@ These findings separate confirmed stored configuration/source from possible prod
 | Incomplete profile record | Confirmed record | Candidate Profile record `xt4krgWd8iZJUN` has blank Full Name. This resolves the empty display label observed in the initial app-user datasource link. |
 | Matching fields empty | Confirmed table-wide counts | All 295 Job Listings have empty Fit Score, Fit Summary, and Recommended For. No separate matching workflow was returned. Attached AI connections alone do not prove a working matching feature. |
 | Minimal unused-looking form | Confirmed metadata; intent unknown | Untitled Form is unpublished. Its Form values database contains an empty Submissions table with only Auto number. Native form field/destination configuration is not exposed, so the actual form contents cannot be established. |
+| Form has authenticated page gates but no user table | Confirmed user-connection response and page metadata; runtime untested | `get_user_connection` reports no users table connected for Untitled Form. `/list`, `/onboarding`, `/item-details`, and `/form` require Logged in users. Condition-based groups are unavailable; the public `/` form's runtime behavior was not tested. |
 | Permissions need intended-scope review | Confirmed metadata; consequence unverified | Both apps have zero global data restrictions; every page returns EDIT=All users. Logged-in page gates remain in effect. Native block filters and action permissions are not available to confirm per-user isolation. |
 | Duplicated profile attributes and empty role options | Confirmed schema | Users.Target Roles and Skills are text, while Candidate Profile counterparts are multi-select; Users.Role has no predefined labels but permits adding choices. No synchronization rule was exposed. |
 | Two archive representations currently agree | Confirmed schema/records | Saved Jobs has both Status=Archived and an Archived checkbox. They agree in all 30 records, but no synchronization rule was established. |
@@ -681,7 +693,7 @@ These findings separate confirmed stored configuration/source from possible prod
 
 ## Evidence, limitations, and verification
 
-Builder MCP evidence used: initialize/tools-list; list_applications; list_databases; list_workspaces; list_tables for both databases; get_table for all six tables; list_pages/get_page/get_page_permissions for all 21 pages; list_user_groups/get_access_control for both apps; get_block for one native Kanban block; settings and source for all six custom-code blocks; list_data_sources and Airtable base enumeration; list_workflows/get_workflow/get_workflow_url for both workflows; get_node_specifications; list_records for the four small populated tables; get_schema and Job Listings count aggregations.
+Builder MCP evidence used: initialize/tools-list; list_applications; list_databases; list_workspaces; list_tables for both databases; get_table for all six tables; list_pages/get_page/get_page_permissions for all 21 pages; list_user_groups/get_access_control for both apps; get_user_connection for both apps in the follow-up check; get_block for one native Kanban block; settings and source for all six custom-code blocks; list_data_sources and Airtable base enumeration; list_workflows/get_workflow/get_workflow_url for both workflows; get_node_specifications; list_records for the four small populated tables; get_schema and Job Listings count aggregations.
 
 Earlier App MCP evidence is retained only where explicitly labeled: its usedBlocks confirms three native read targets, and its operation labels give table-level action context. It did not provide complete schemas or database-wide user/profile/draft totals. The current builder inventory supersedes those earlier limitations: there are nine drafts, not zero; Full Name and all reciprocal relations are now known; app names, page names, groups, workflow graphs, and publication metadata are now available.
 

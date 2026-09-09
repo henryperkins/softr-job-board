@@ -2,6 +2,10 @@
 
 A job board built on [Softr](https://www.softr.io).
 
+The **[workspace inventory](docs/softr-workspace.md)** documents the databases, fields,
+status values, apps, pages, blocks, user permissions, workflows, and publication state
+inspected on September 8, 2026, including known gaps and unfinished features.
+
 ## Working on this project with an AI assistant
 
 The Softr workspace behind this project is reachable over the

@@ -89,7 +89,9 @@ url = "https://mcp.softr.io/mcp"
 Softr does not support OAuth Dynamic Client Registration; Codex negotiates a
 [Client ID Metadata Document](https://developers.openai.com/codex/mcp) instead, which
 needs no configuration. If login fails, fall back to a
-[personal access token](#personal-access-tokens).
+[personal access token using the Codex-specific setup below](#codex-token-setup).
+The OAuth origin-validation error encountered with Codex CLI 0.153.4 is covered under
+[Troubleshooting](#troubleshooting).
 
 ## Cursor
 
@@ -157,32 +159,99 @@ actually need to, rather than by default.
 
 ## Personal access tokens
 
-Use a token when you are building your own MCP client, or connecting a tool with no OAuth
-support.
+Use a token when your client has no OAuth support or its OAuth login fails. The Codex
+connection used for the [workspace inventory](softr-workspace.md) succeeded with this
+method after OAuth failed.
 
 1. **API tokens** in your Softr account menu → **Create**. Give it a name and an expiry
    (never, 1 year, 90 days, 30 days).
 2. On **Define scopes**, pick the workspaces and permissions it carries — same choices as
-   the authorization screen.
-3. Send it as a bearer token:
+   the authorization screen. For a read-only inventory, choose **Applications & Forms:
+   Read only**, **Databases: View only**, and **Workflows: Read only**.
+3. Store the token in an environment variable named `SOFTR_WORKSPACE_TOKEN`, available to
+   the process running your assistant. On Windows, open **Edit environment variables for
+   your account**, add that name under **User variables**, and use the token as its value.
+   Open a new terminal and fully quit and reopen desktop clients after setting it, so
+   they inherit the variable.
+4. Use the configuration for your client below.
+
+### Claude Code token setup
+
+In your local `.mcp.json`, replace the `softr` entry with this configuration. The
+`"type": "http"` field is required; Claude Code 2.1.263 ignored the token example when
+that field was missing. Claude Code expands `${SOFTR_WORKSPACE_TOKEN}` in headers.
 
 ```json
 {
   "mcpServers": {
     "softr": {
+      "type": "http",
       "url": "https://mcp.softr.io/mcp",
       "headers": {
-        "Authorization": "Bearer ${SOFTR_API_TOKEN}"
+        "Authorization": "Bearer ${SOFTR_WORKSPACE_TOKEN}"
       }
     }
   }
 }
 ```
 
+Start Claude Code, approve the project server if prompted, and use `/mcp` to check the
+connection. See [Claude Code's environment-variable syntax](https://code.claude.com/docs/en/mcp#environment-variable-expansion-in-mcpjson).
+
+### Codex token setup
+
+Run this from a terminal that has `SOFTR_WORKSPACE_TOKEN` available:
+
+```bash
+codex mcp add softr --url https://mcp.softr.io/mcp --bearer-token-env-var SOFTR_WORKSPACE_TOKEN
+```
+
+Reuse the server name from your earlier registration: these examples use `softr`; use
+`softr-workspace` instead if that is the name you registered. This replaces that server's
+configuration. The flag takes the **environment-variable name**.
+
+The equivalent entry in `~/.codex/config.toml` is:
+
+```toml
+[mcp_servers.softr]
+url = "https://mcp.softr.io/mcp"
+bearer_token_env_var = "SOFTR_WORKSPACE_TOKEN"
+```
+
+Bearer-token authentication does not require `codex mcp login`. Fully quit and reopen
+the desktop client after changing its environment, then start a fresh task to load the
+MCP tools. `codex mcp list` checks registration; asking the assistant to list your Softr
+apps verifies an authenticated read. See [Codex MCP configuration](https://developers.openai.com/codex/mcp).
+
+### Cursor token setup
+
+Replace the server entry in `.cursor/mcp.json` or `~/.cursor/mcp.json` with:
+
+```json
+{
+  "mcpServers": {
+    "Softr": {
+      "url": "https://mcp.softr.io/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:SOFTR_WORKSPACE_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+Cursor requires the `env:` prefix for environment variables in headers. Restart Cursor
+after setting the variable, then check the server connection in MCP settings. See
+[Cursor's config interpolation](https://cursor.com/docs/mcp#config-interpolation).
+
+Other clients have their own configuration formats and variable-substitution rules;
+use their documented method to supply an `Authorization: Bearer` header.
+
 > [!IMPORTANT]
-> A personal access token is a credential. Keep it in an environment variable as shown
-> above — never commit the literal token to this repo. The checked-in `.mcp.json` uses
-> OAuth precisely so there is no secret to leak.
+> A personal access token is a credential. Keep its value in your environment and use
+> only the variable reference in configuration. Never commit the literal token to this
+> repo. The checked-in `.mcp.json` remains configured for OAuth; the token examples above
+> are local alternatives.
 
 ## Managing and removing access
 
@@ -202,12 +271,23 @@ permissions, that is a different server — see
 
 ## Troubleshooting
 
+- **Codex reports `OAuth authorization endpoint origin does not match the authorization server origin without issuer-bound callbacks`** — this was observed with Codex CLI
+  0.153.4 during the inventory setup. Softr advertised `https://studio-api.softr.io` as
+  issuer and `https://studio.softr.io/oauth/authorize` as the authorization endpoint;
+  Codex rejected that combination. Follow [Codex token setup](#codex-token-setup), which
+  successfully authenticated for this inventory.
+- **Token variable is missing or new MCP tools do not appear** — check that the assistant
+  process inherited `SOFTR_WORKSPACE_TOKEN`. After updating Windows user variables, open
+  a new terminal and fully quit and reopen the desktop client, then start a fresh task.
+  In Codex, `bearer_token_env_var` must contain the variable name `SOFTR_WORKSPACE_TOKEN`.
 - **`claude mcp list` says "Pending approval"** — start `claude` in the repo and approve the
   project's MCP servers. Project-scoped servers stay inert until you do.
 - **`claude mcp list` says "Needs authentication"** — the server is approved but you haven't
   run `/mcp` → **softr** → **Authenticate** yet.
-- **Every call returns 401** — the token expired or the app was revoked. Re-authenticate
-  from `/mcp`.
+- **Every call returns 401** — check the credential and its access. For OAuth, reconnect
+  using your client's authentication flow. For a personal token, check that the variable
+  is available to the client and the token is valid; replace an expired or revoked token
+  in the environment and restart the client.
 - **Assistant can't see a project** — the authorization screen scoped it out. Revoke under
   **Authorized apps** and reconnect with wider **Access**.
 - **Assistant refuses a write** — Permissions for that area are read-only. Reconnect with
