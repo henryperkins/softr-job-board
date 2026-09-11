@@ -1,0 +1,120 @@
+{
+  "release": {
+    "environment": "production",
+    "gitSha": "REPLACE_WITH_FULL_40_CHARACTER_GIT_SHA",
+    "treeClean": true,
+    "preparedAt": "REPLACE_WITH_ISO_8601_TIME",
+    "preparedBy": "REPLACE_WITH_OPERATOR"
+  },
+  "localChecks": {
+    "lint": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "typecheck": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "unit": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "integration": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "jobs": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "browser": {
+      "passed": true,
+      "total": 1,
+      "command": "REPLACE_WITH_EXACT_COMMAND"
+    },
+    "dryBuilds": {
+      "passed": true,
+      "total": 2,
+      "command": "REPLACE_WITH_EXACT_COMMANDS"
+    }
+  },
+  "deployed": {
+    "appWorker": {
+      "name": "UNPROVISIONED_APP_WORKER",
+      "versionId": "UNPROVISIONED_APP_VERSION",
+      "deployedAt": "REPLACE_WITH_ISO_8601_TIME"
+    },
+    "backgroundWorker": {
+      "name": "UNPROVISIONED_BACKGROUND_WORKER",
+      "versionId": "UNPROVISIONED_BACKGROUND_VERSION",
+      "deployedAt": "REPLACE_WITH_ISO_8601_TIME"
+    },
+    "d1DatabaseId": "UNPROVISIONED_D1_DATABASE",
+    "r2Buckets": ["UNPROVISIONED_PRIVATE_R2_BUCKET"],
+    "emailBinding": {
+      "name": "EMAIL",
+      "allowedSenderAddresses": ["no-reply@auth.lakefrontdev.com"],
+      "mailFrom": "no-reply@auth.lakefrontdev.com"
+    },
+    "d1Bookmark": "UNPROVISIONED_D1_BOOKMARK",
+    "restoreRehearsedAt": "REPLACE_WITH_ISO_8601_TIME",
+    "deliveryVerifiedAt": "REPLACE_WITH_ISO_8601_TIME",
+    "isolationVerifiedAt": "REPLACE_WITH_ISO_8601_TIME"
+  },
+  "migrations": [
+    {
+      "name": "0001_foundation.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    {
+      "name": "0002_migration.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    {
+      "name": "0003_user_flows.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    {
+      "name": "0004_migration_history.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    {
+      "name": "0005_ingestion.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    {
+      "name": "0006_generation.sql",
+      "sha256": "REPLACE_WITH_64_CHARACTER_SHA256"
+    },
+    { "name": "0007_mcp.sql", "sha256": "REPLACE_WITH_64_CHARACTER_SHA256" }
+  ],
+  "releaseFlags": {
+    "writesEnabled": true,
+    "generationEnabled": false,
+    "mcpEnabled": false,
+    "mcpWritesEnabled": false,
+    "mcpGenerationEnabled": false,
+    "mcpReviewEnabled": false,
+    "mailMode": "cloudflare"
+  },
+  "sourceCutover": {
+    "finalExportHash": "REPLACE_WITH_64_CHARACTER_SHA256",
+    "attachmentManifestHash": "REPLACE_WITH_64_CHARACTER_SHA256",
+    "recordCount": 1,
+    "writerFrozenAt": "REPLACE_WITH_ISO_8601_TIME",
+    "lastAcceptedSourceWriteAt": "REPLACE_WITH_ISO_8601_TIME",
+    "firstAcceptedTargetWriteAt": "REPLACE_WITH_OBSERVED_ISO_8601_TIME"
+  },
+  "routing": {
+    "apexBefore": "REPLACE_WITH_OBSERVED_ROUTE",
+    "apexAfter": "REPLACE_WITH_OBSERVED_ROUTE",
+    "wwwBefore": "REPLACE_WITH_OBSERVED_ROUTE",
+    "wwwAfter": "REPLACE_WITH_OBSERVED_ROUTE",
+    "unrelatedRecordsPreserved": true
+  }
+}

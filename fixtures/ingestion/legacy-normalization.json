@@ -1,0 +1,84 @@
+{
+  "kind": "synthetic-reviewed-legacy-comparison",
+  "review": "Derived by static reading of credential-free legacy code; never executed. Synthetic examples only.",
+  "cases": [
+    {
+      "source": "greenhouse:stripe",
+      "input": {
+        "id": 101,
+        "title": "Engineer",
+        "absolute_url": "https://boards.greenhouse.io/synthetic/jobs/101",
+        "content": "Complete description",
+        "location": { "name": "Chicago" }
+      },
+      "legacy": {
+        "externalId": "greenhouse:101",
+        "employment": "Full-time",
+        "seniority": "Mid",
+        "description": null
+      },
+      "expected": {
+        "core": {
+          "employment": null,
+          "seniority": null,
+          "description": "Complete description"
+        }
+      },
+      "difference": "Identity now includes board. Unstated employment/seniority stay unknown; full content=true description retained; Engineering tag carries inference provenance."
+    },
+    {
+      "source": "fantastic:active-ats",
+      "input": {
+        "id": "F1",
+        "title": "Engineer",
+        "url": "https://synthetic.test/jobs/F1",
+        "description_text": "Complete description",
+        "ai_salary_value": 50,
+        "ai_salary_currency": "EUR",
+        "ai_salary_unit_text": "HOUR"
+      },
+      "legacy": {
+        "salaryMin": 104000,
+        "salaryMax": 104000,
+        "currency": null,
+        "period": null
+      },
+      "expected": {
+        "salary": {
+          "min": 50,
+          "max": 50,
+          "currency": "EUR",
+          "period": "HOUR",
+          "provenance": "provider-ai"
+        }
+      },
+      "difference": "No assumption of 2080 paid hours or implied annual/dollar salary. Source AI provenance retained."
+    },
+    {
+      "source": "jobven:public-jobs",
+      "input": {
+        "id": "J1",
+        "title": "Engineer",
+        "status": "active",
+        "applyUrl": null,
+        "companies": [{ "name": "synthetic.test" }],
+        "descriptionPlain": "Plain API description",
+        "salary": { "min": 50 }
+      },
+      "legacy": {
+        "disposition": "discarded missing applyUrl; descriptionPlain ignored",
+        "fallbackPeriod": "YEAR"
+      },
+      "expected": {
+        "salary": {
+          "min": 50,
+          "max": null,
+          "currency": null,
+          "period": null,
+          "provenance": "source"
+        }
+      },
+      "difference": "Optional URL does not erase a valid record. Plain response field is used. Company domains and unknown salary periods are preserved."
+    }
+  ]
+}

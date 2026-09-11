@@ -1,0 +1,133 @@
+{
+  "collectedAt": "2026-09-11T11:26:35.287Z",
+  "repositoryBase": "95799ea261871402be2598f5aea3d4109f6065f2",
+  "application": {
+    "id": "73913ca1-ce5d-4a96-95ac-598f361fb452",
+    "name": "AI Job Board & Draft Applications",
+    "description": null,
+    "workspaceId": "99d735dc-b3b3-4f51-af8d-8df4c4091d5c",
+    "applicationType": "REGULAR_APPLICATION",
+    "domain": "www.lakefrontdev.com",
+    "subdomain": "heide5790.softr.app",
+    "homePageId": "f03bd363-456f-4a6d-b64f-cfb81e7f737e",
+    "created": "2026-08-28T23:42:23",
+    "updated": "2026-09-11T10:07:24",
+    "published": "2026-09-07T05:30:55",
+    "emailSender": {
+      "signatureId": null,
+      "name": "AI Job Board & Draft Applications",
+      "email": "heide5790@softr.app",
+      "confirmed": true,
+      "isDefault": true
+    }
+  },
+  "tableCounts": [
+    {
+      "id": "jlY4Kuae0x2iG7",
+      "name": "Users",
+      "records": 6,
+      "fields": 14
+    },
+    {
+      "id": "pGOkkyhqqf97c7",
+      "name": "Candidate Profile",
+      "records": 9,
+      "fields": 19
+    },
+    {
+      "id": "OAV7rxXGxAj2a1",
+      "name": "Job Listings",
+      "records": 295,
+      "fields": 33
+    },
+    {
+      "id": "v3cxPKO973nVxq",
+      "name": "Saved Jobs",
+      "records": 30,
+      "fields": 12
+    },
+    {
+      "id": "cvFoZD4aXb3YHJ",
+      "name": "Draft Applications",
+      "records": 9,
+      "fields": 12
+    }
+  ],
+  "roster": {
+    "total": 6,
+    "activated": 1,
+    "notInvited": 5,
+    "activeFlag": 6,
+    "note": "Status and active flags are separate; login and control not demonstrated."
+  },
+  "preflight": {
+    "profileOwnerMissing": 0,
+    "profileOwnerMultiple": 0,
+    "profileOwnerDangling": 0,
+    "savedOwnerMissing": 0,
+    "savedOwnerDangling": 0,
+    "savedJobMissing": 0,
+    "draftOwnerMismatch": 0,
+    "draftSavedJobMissing": 0,
+    "duplicateSaveGroups": 0,
+    "archiveConflicts": 0,
+    "invalidBusinessTimestamps": 0,
+    "invalidSystemTimestamps": 0,
+    "profilesPerOwner": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "authRoster": 6,
+    "sourceUsers": 6,
+    "authMatchesByNormalizedEmail": 6,
+    "ambiguousAuthEmail": 0,
+    "statusDistributions": {
+      "Job Listings": {
+        "Open": 295
+      },
+      "Saved Jobs": {
+        "Draft Requested": 5,
+        "Draft Ready": 4,
+        "Saved": 11,
+        "Submitted": 5,
+        "Rejected": 2,
+        "Archived": 3
+      },
+      "Draft Applications": {
+        "In Progress": 2,
+        "Ready for Review": 2,
+        "Approved": 2,
+        "Needs Edits": 3
+      }
+    },
+    "attachments": {
+      "count": 26,
+      "hosts": {
+        "softr-tables-eu-prod-bucket05.s3.eu-central-1.amazonaws.com": 26
+      },
+      "mediaTypes": {
+        "image/jpeg": 1,
+        "image/webp": 4,
+        "application/pdf": 21
+      },
+      "declaredBytes": 451499
+    }
+  },
+  "browser": {
+    "jobs": {
+      "requested": "https://www.lakefrontdev.com/jobs",
+      "observed": "https://www.lakefrontdev.com/login?next-page=/jobs",
+      "authenticated": false
+    }
+  },
+  "nativeBlocks": {
+    "inventoryRead": true,
+    "actionBindingsExposedByGetBlock": false,
+    "authenticatedBrowserAcceptance": false
+  },
+  "productionChanges": false
+}

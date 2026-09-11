@@ -1,0 +1,47 @@
+{
+  "description": "Synthetic deterministic contract fixtures; not live model-quality evaluation.",
+  "cases": [
+    {
+      "name": "exact numerical and employer quotation requires human review",
+      "profile": {
+        "summary": "I led 3 engineers at Example."
+      },
+      "output": {
+        "evidenceIds": ["profile.summary"]
+      },
+      "expected": "review-required",
+      "contains": "I led 3 engineers at Example."
+    },
+    {
+      "name": "invented evidence rejected",
+      "profile": {
+        "summary": "I build software."
+      },
+      "output": {
+        "evidenceIds": ["profile.phd"]
+      },
+      "expected": "provider_output_unsupported"
+    },
+    {
+      "name": "reference does not authorize new claim",
+      "profile": {
+        "summary": "I build software."
+      },
+      "output": {
+        "evidenceIds": ["profile.summary"],
+        "coverLetter": "I earned a PhD and increased revenue 90%."
+      },
+      "expected": "provider_output_invalid"
+    },
+    {
+      "name": "empty selection rejected",
+      "profile": {
+        "summary": "I build software."
+      },
+      "output": {
+        "evidenceIds": []
+      },
+      "expected": "provider_output_invalid"
+    }
+  ]
+}

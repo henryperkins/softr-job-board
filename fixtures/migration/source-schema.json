@@ -1,0 +1,1832 @@
+{
+  "schemaVersion": 1,
+  "databaseId": "a81814c7-d517-40d6-b926-66d49bba8851",
+  "collectedAt": "2026-09-11T11:26:35.287Z",
+  "tables": [
+    {
+      "id": "jlY4Kuae0x2iG7",
+      "name": "Users",
+      "fields": [
+        {
+          "id": "c63tL",
+          "name": "Email",
+          "type": "EMAIL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "o0JWv",
+          "name": "Name",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "QH0S6",
+          "name": "Avatar",
+          "type": "ATTACHMENT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "z0b2k",
+          "name": "Role",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "zQwg2",
+          "name": "Candidate Profiles",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "pGOkkyhqqf97c7",
+          "inverseLinkFieldId": "jEkaS",
+          "defaultValue": null
+        },
+        {
+          "id": "U0SGB",
+          "name": "Recommended Jobs",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "OAV7rxXGxAj2a1",
+          "inverseLinkFieldId": "yKtWe",
+          "defaultValue": null
+        },
+        {
+          "id": "Sc7CY",
+          "name": "Saved Jobs",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "v3cxPKO973nVxq",
+          "inverseLinkFieldId": "pKLXK",
+          "defaultValue": null
+        },
+        {
+          "id": "gox5D",
+          "name": "Draft Applications",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "cvFoZD4aXb3YHJ",
+          "inverseLinkFieldId": "0kz7P",
+          "defaultValue": null
+        },
+        {
+          "id": "Ma5xR",
+          "name": "Target Roles",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "usRqT",
+          "name": "Location / Remote Preference",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "4ec12a38-04e0-4d7c-99f4-dc819740731f",
+              "label": "Remote"
+            },
+            {
+              "id": "f887ee99-a2b7-438a-b864-927477fb6a7a",
+              "label": "Hybrid"
+            },
+            {
+              "id": "d9cf118a-dce8-4f16-a3f8-975a3465b370",
+              "label": "On-site"
+            },
+            {
+              "id": "7ede4561-d265-4e90-8036-ad9cca63b814",
+              "label": "Open to relocation"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "9UHk9",
+          "name": "Employment Type",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "6e9b4be6-459f-481e-92c2-87c6880eb598",
+              "label": "Full-time"
+            },
+            {
+              "id": "13fdd080-28fa-45ac-80d6-f8ae956ddb89",
+              "label": "Contract"
+            },
+            {
+              "id": "0824d6db-f038-4b4d-8dc6-bfcd7138c637",
+              "label": "Part-time"
+            },
+            {
+              "id": "f89f41c9-92e7-4708-99da-d1103b1356cd",
+              "label": "Internship"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Eb3Gk",
+          "name": "Seniority",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "4dc4b161-cf50-488b-ab2d-b066a1bb8304",
+              "label": "Internship"
+            },
+            {
+              "id": "5009b85e-4ed2-461c-8e53-634f34e1001d",
+              "label": "Junior"
+            },
+            {
+              "id": "3fe93d02-12b2-4291-8602-65b253fe36ae",
+              "label": "Mid"
+            },
+            {
+              "id": "b2cccc0e-6682-4cc7-8af1-70df1ddbb27d",
+              "label": "Senior"
+            },
+            {
+              "id": "8ee66e45-5c11-492c-baba-8cff35460f47",
+              "label": "Lead"
+            },
+            {
+              "id": "4dc6088f-7fe9-466c-a1a7-89f18ea76523",
+              "label": "Manager"
+            },
+            {
+              "id": "16800df6-1af2-485b-bfeb-5df7b1ae7c79",
+              "label": "Director"
+            },
+            {
+              "id": "0cf45b96-31a5-4e01-9eda-60044df5cfc3",
+              "label": "Executive"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "TBaRn",
+          "name": "Salary Range",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "X0Xyi",
+          "name": "Skills",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        }
+      ]
+    },
+    {
+      "id": "pGOkkyhqqf97c7",
+      "name": "Candidate Profile",
+      "fields": [
+        {
+          "id": "JsepF",
+          "name": "Full Name",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "STp8T",
+          "name": "Email",
+          "type": "EMAIL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "a6HnR",
+          "name": "Headline",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "s91mE",
+          "name": "Location",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "mQtF2",
+          "name": "Target Roles",
+          "type": "SELECT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "06451763-360f-4581-aa74-dd77cc61e2ee",
+              "label": "Full Stack Developer"
+            },
+            {
+              "id": "12849466-7b4e-4474-b8f6-7bc813ffe804",
+              "label": "Software Engineer"
+            },
+            {
+              "id": "4190dde0-448f-43d2-9c86-b938dd428343",
+              "label": "UX Designer"
+            },
+            {
+              "id": "41035860-7e6f-4554-b42f-3c14b4896d41",
+              "label": "Product Manager"
+            },
+            {
+              "id": "406a7ad3-2404-4041-8713-0569b7d19694",
+              "label": "Data Scientist"
+            },
+            {
+              "id": "01e15ea5-ba8a-4ddd-bc6f-2f3c7a25b186",
+              "label": "Backend Developer"
+            },
+            {
+              "id": "33784f4a-05e4-4caa-b426-ee1eca6dc3cb",
+              "label": "Frontend Developer"
+            },
+            {
+              "id": "0ea2ed05-41f4-4aae-9c1a-362dfde5f54c",
+              "label": "DevOps Engineer"
+            },
+            {
+              "id": "341e0c72-9080-49cb-b0f1-515d71db1aae",
+              "label": "Project Manager"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "kPJYk",
+          "name": "Skills",
+          "type": "SELECT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "15e5cbec-ae27-44b2-bfd5-1383da9bb6fb",
+              "label": "JavaScript"
+            },
+            {
+              "id": "ca67ea99-224d-4c56-a664-a957d9bc8574",
+              "label": "React"
+            },
+            {
+              "id": "d8f66e71-c54c-431e-8715-9ba067e34f7a",
+              "label": "Node.js"
+            },
+            {
+              "id": "0eb0755e-4a21-4f7a-a0db-789cdd4817a3",
+              "label": "AWS"
+            },
+            {
+              "id": "de6f8e62-d0de-4626-ab0c-7dcc6597eec7",
+              "label": "SQL"
+            },
+            {
+              "id": "ef535f33-9a1c-4519-bca8-c540c42ba15a",
+              "label": "Figma"
+            },
+            {
+              "id": "3fb08c9d-c272-4ebb-bc7b-6bff2e6e3db5",
+              "label": "User Research"
+            },
+            {
+              "id": "e72be7fc-36c6-4d0a-b764-ed2e59b62e4f",
+              "label": "Agile"
+            },
+            {
+              "id": "59c70c4a-1116-4a55-bcca-817fb7ae53e7",
+              "label": "Adobe XD"
+            },
+            {
+              "id": "20927d8a-0c14-407a-ac77-879e85dfb035",
+              "label": "Python"
+            },
+            {
+              "id": "e556b954-675e-4dcd-b82c-e6ea16c6e7fa",
+              "label": "Machine Learning"
+            },
+            {
+              "id": "6095a952-6f5e-4496-b96a-8e211a8ee705",
+              "label": "Docker"
+            },
+            {
+              "id": "a14d12a7-1447-4a97-a6a6-6766919258cf",
+              "label": "Java"
+            },
+            {
+              "id": "abdfb2c4-8278-4713-b331-d8c1400927d4",
+              "label": "TypeScript"
+            },
+            {
+              "id": "55a16102-04e8-4da2-8dd4-6e32092923c0",
+              "label": "CSS"
+            },
+            {
+              "id": "99042342-5bd9-4e2f-a8ec-f40be6aa0788",
+              "label": "Git"
+            },
+            {
+              "id": "d9b11e7c-f0ef-436e-b237-69f1a8e79bed",
+              "label": "Terraform"
+            },
+            {
+              "id": "5e990e25-1811-4871-a7f8-8870a3fe7e92",
+              "label": "Kubernetes"
+            },
+            {
+              "id": "857ab607-8582-4e79-8ba0-d6e59795404c",
+              "label": "Scrum"
+            },
+            {
+              "id": "67de9fec-d67d-4941-b9ee-53baa4946fef",
+              "label": "Jira"
+            },
+            {
+              "id": "ae37dd19-ef15-4616-83d2-981349adc564",
+              "label": "Spring Boot"
+            },
+            {
+              "id": "e1991608-3150-49bd-aab3-c64d5e08b839",
+              "label": "WordPress"
+            },
+            {
+              "id": "185eafee-aa58-4dad-acb4-d67561af9b3c",
+              "label": "PHP"
+            },
+            {
+              "id": "af4ec189-ea8a-4908-a36a-b05112eb2afb",
+              "label": "LEMP"
+            },
+            {
+              "id": "5083a44e-c483-42b1-807b-cce07ea21207",
+              "label": "Claude Code"
+            },
+            {
+              "id": "5c472647-fae1-4cdc-9b1a-954fdcfcbe1e",
+              "label": "MCP tooling"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "ivALq",
+          "name": "Years of Experience",
+          "type": "NUMBER",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "PVhtG",
+          "name": "Portfolio URL",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "oybjv",
+          "name": "LinkedIn URL",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "xItg1",
+          "name": "GitHub URL",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "ANMOx",
+          "name": "Summary",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "z5BqF",
+          "name": "Resume File",
+          "type": "ATTACHMENT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "XqXl3",
+          "name": "Additional Documents",
+          "type": "ATTACHMENT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "QSfxM",
+          "name": "Preferred Work Type",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "61bf0b30-0a31-4434-b292-65261e3d33ab",
+              "label": "Remote"
+            },
+            {
+              "id": "89c2c0bc-7d35-4896-ba08-d51338f5e771",
+              "label": "Hybrid"
+            },
+            {
+              "id": "0c49bddf-8e0b-4d72-8ee4-690e1dad8f0c",
+              "label": "On-site"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "PAvUp",
+          "name": "Preferred Employment Type",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "2f1b9f8b-da88-4263-bcbb-779ea56661d6",
+              "label": "Full-time"
+            },
+            {
+              "id": "78116ccd-9aad-4cbd-818e-70ce8f8b1668",
+              "label": "Contract"
+            },
+            {
+              "id": "942d4495-aca3-4760-a339-2514b6398e7d",
+              "label": "Part-time"
+            },
+            {
+              "id": "8064d8bc-6fdb-476b-bd75-2fc84133a8a6",
+              "label": "Internship"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "u3v0Q",
+          "name": "Salary Minimum",
+          "type": "NUMBER",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "fPK4m",
+          "name": "Created At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "aGnZ7",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "jEkaS",
+          "name": "Owner",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "jlY4Kuae0x2iG7",
+          "inverseLinkFieldId": "zQwg2",
+          "defaultValue": null
+        }
+      ]
+    },
+    {
+      "id": "OAV7rxXGxAj2a1",
+      "name": "Job Listings",
+      "fields": [
+        {
+          "id": "FSayV",
+          "name": "Job Title",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "8FbKI",
+          "name": "Company",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "b65iu",
+          "name": "Source",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "cec1e24e-c01f-4538-b0d9-2f30b0d4ffb5",
+              "label": "LinkedIn"
+            },
+            {
+              "id": "8ced5a6c-312a-4c07-b9f6-9ebf45a2d120",
+              "label": "Indeed"
+            },
+            {
+              "id": "1629ea93-a4cc-421a-b737-e8a7dd70741a",
+              "label": "Greenhouse"
+            },
+            {
+              "id": "d58c5d59-fcbf-4cc2-a1b9-36f7cf5c5792",
+              "label": "Lever"
+            },
+            {
+              "id": "84eea510-7999-4439-bd5d-3affeebfa074",
+              "label": "Workday"
+            },
+            {
+              "id": "83b0a0d7-9033-4e5b-913a-8c6a4d35e559",
+              "label": "Company Site"
+            },
+            {
+              "id": "6f875887-13f5-4322-8db0-840523e8578a",
+              "label": "Other"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "mIAha",
+          "name": "Source Job URL",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "V9DKL",
+          "name": "Location",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "nqBM6",
+          "name": "Remote Policy",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "397bfef7-392a-4c22-834d-bd081d192425",
+              "label": "Remote"
+            },
+            {
+              "id": "fe0a8803-348b-45ee-8703-ce870a949bc3",
+              "label": "Hybrid"
+            },
+            {
+              "id": "578bec05-2a37-4849-bdb3-9113dfc56b9f",
+              "label": "On-site"
+            },
+            {
+              "id": "6b6c2236-d56b-4fdc-861c-9e38559f6147",
+              "label": "Unknown"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "L391o",
+          "name": "Employment Type",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "afa021ac-61cd-47c0-adbb-9ae1555a7993",
+              "label": "Full-time"
+            },
+            {
+              "id": "ed8ab998-1ecd-4b35-8b87-efdedc1c88b4",
+              "label": "Contract"
+            },
+            {
+              "id": "7f6a4d86-897d-41f6-8894-db808155dbc7",
+              "label": "Part-time"
+            },
+            {
+              "id": "ea78f238-12b6-4c6d-9169-af64f70e1ac1",
+              "label": "Internship"
+            },
+            {
+              "id": "4fc34c1d-0487-4d6f-854a-eea604873bc2",
+              "label": "Unknown"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "O5o9t",
+          "name": "Seniority",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "47fb54d3-fb43-4379-b212-dbcc886f4bd1",
+              "label": "Internship"
+            },
+            {
+              "id": "39877b24-155e-424e-a2b8-565322659d80",
+              "label": "Junior"
+            },
+            {
+              "id": "3d012686-8391-42c2-a7f8-8144bb005c1c",
+              "label": "Mid"
+            },
+            {
+              "id": "3e337f4e-3e01-4ffc-af8e-67e2b285e13f",
+              "label": "Senior"
+            },
+            {
+              "id": "635f9d8f-9311-40e3-92c4-65dd3abe1115",
+              "label": "Lead"
+            },
+            {
+              "id": "af45faf1-a7cc-4aff-83e9-83e7696fb546",
+              "label": "Manager"
+            },
+            {
+              "id": "2ef224fd-f0d5-41fe-88dc-a95c5a431c3f",
+              "label": "Director"
+            },
+            {
+              "id": "f088c3cf-e006-4929-9fe8-37553c364548",
+              "label": "Executive"
+            },
+            {
+              "id": "0bb2b6a8-5273-4470-9b17-478b1fce3abc",
+              "label": "Unknown"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "zSryi",
+          "name": "Salary Range Min",
+          "type": "NUMBER",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "diQfJ",
+          "name": "Salary Range Max",
+          "type": "NUMBER",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Q3LGs",
+          "name": "Description",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "D5upg",
+          "name": "Requirements",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "tWFbv",
+          "name": "Posted Date",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "DRtJ2",
+          "name": "Job Status",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "8a4d87f0-3b78-4957-84ed-364b4e80dd0b",
+              "label": "Open"
+            },
+            {
+              "id": "c1ee3460-3433-4f78-93c8-d51023f587b5",
+              "label": "Closed"
+            },
+            {
+              "id": "fee67791-81ca-4d72-b98d-91546d39fd28",
+              "label": "Unknown"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "XMuIF",
+          "name": "Tags",
+          "type": "SELECT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "c7affc28-2340-42a6-82bd-d2f59865a777",
+              "label": "Engineering"
+            },
+            {
+              "id": "513e791b-22a2-4b80-9a3f-4edf12ee5229",
+              "label": "Cloud"
+            },
+            {
+              "id": "7f23b610-9307-4f81-af85-0c9932ff57ac",
+              "label": "High Growth"
+            },
+            {
+              "id": "8c0cc49b-2120-4f9e-b903-77eca309da41",
+              "label": "Product"
+            },
+            {
+              "id": "c7d0b4a2-395e-46e8-9b00-d784ac0ad4d3",
+              "label": "Strategy"
+            },
+            {
+              "id": "8a37c1ab-e7aa-485b-8922-a119e199d948",
+              "label": "SaaS"
+            },
+            {
+              "id": "0966ffee-6d0a-43ce-bbcf-b2fa32643e7f",
+              "label": "Data Science"
+            },
+            {
+              "id": "d20de763-b528-43b2-bf0f-1829f552c386",
+              "label": "Machine Learning"
+            },
+            {
+              "id": "31e7536f-4f67-4058-81dd-4a5130aee26d",
+              "label": "Fintech"
+            },
+            {
+              "id": "38d7a0f2-3072-433c-acea-1f3aca1e9199",
+              "label": "Design"
+            },
+            {
+              "id": "dc11ee91-2afc-4988-976f-f0f2ace91994",
+              "label": "Mobile"
+            },
+            {
+              "id": "ddfea2ea-bebc-4a3c-b501-9b911945ed8c",
+              "label": "UI/UX"
+            },
+            {
+              "id": "1d6707db-7a9f-4391-bee2-a39bf0920f00",
+              "label": "Marketing"
+            },
+            {
+              "id": "6196b90a-cbde-4a4c-bb44-cfe2278bdf8d",
+              "label": "Operations"
+            },
+            {
+              "id": "852aea32-8ed4-46a5-899c-dfa514975a63",
+              "label": "MarTech"
+            },
+            {
+              "id": "e0e03672-2d5c-466d-a98c-9f415b32d699",
+              "label": "React"
+            },
+            {
+              "id": "40605371-42f4-42ce-a14b-7d7b3ca18c8d",
+              "label": "Startup"
+            },
+            {
+              "id": "c3b1f36f-cb7f-4e0b-835e-b008ccf46204",
+              "label": "Internship"
+            },
+            {
+              "id": "1eb16c2d-06cc-40f7-85ac-4ac129615003",
+              "label": "University"
+            },
+            {
+              "id": "f4a814be-55ca-4108-be43-82de1aabcc6b",
+              "label": "Executive"
+            },
+            {
+              "id": "c0ec2b12-5bbc-4af8-9fc3-53f847fcc0fb",
+              "label": "Leadership"
+            },
+            {
+              "id": "41f148cb-c6a6-4c47-99d0-c499ef8afdf7",
+              "label": "Enterprise"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "X2V8c",
+          "name": "Fit Score",
+          "type": "NUMBER",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "4WR79",
+          "name": "Fit Summary",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "BxJys",
+          "name": "Matched Skills",
+          "type": "SELECT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "e701603c-9807-405f-9454-d78ec7a0ff8e",
+              "label": "React"
+            },
+            {
+              "id": "5acf0220-510b-42ca-81d5-1490df3faed8",
+              "label": "Go"
+            },
+            {
+              "id": "43c77a68-c375-4778-9b1d-3ef503ca0caf",
+              "label": "Kubernetes"
+            },
+            {
+              "id": "4bc14534-8fac-48e5-9643-0257dce0c833",
+              "label": "AWS"
+            },
+            {
+              "id": "5ea159ec-c26e-4b4c-9b4f-3c6adbb178be",
+              "label": "Product Strategy"
+            },
+            {
+              "id": "fd198cf2-98d4-4c55-a604-2ca44674ba8c",
+              "label": "SaaS"
+            },
+            {
+              "id": "d2f0fd1e-f049-49ff-9d61-b16c0b78d852",
+              "label": "Roadmapping"
+            },
+            {
+              "id": "a5aee0ca-b3c5-4166-990a-94c854343905",
+              "label": "Python"
+            },
+            {
+              "id": "280eea00-a4ec-48fe-acd9-5e9fde4b3268",
+              "label": "SQL"
+            },
+            {
+              "id": "923958b7-2720-444e-9056-5012349633c5",
+              "label": "Machine Learning"
+            },
+            {
+              "id": "df133f13-c672-408a-8fb5-53f5bd5e671e",
+              "label": "Figma"
+            },
+            {
+              "id": "7da97adf-1437-47db-9bbc-846c83d41595",
+              "label": "User Research"
+            },
+            {
+              "id": "83dedd6b-e40d-4db3-832a-476cccc2e4d9",
+              "label": "Prototyping"
+            },
+            {
+              "id": "e0ec0049-7dda-4cb9-afa1-9df6264cc717",
+              "label": "Salesforce"
+            },
+            {
+              "id": "c002db0a-acb8-4e77-9dea-8d9c43b90287",
+              "label": "Data Analysis"
+            },
+            {
+              "id": "b5dceab3-50ee-4cd5-9e96-7a24ea4d949d",
+              "label": "HTML/CSS"
+            },
+            {
+              "id": "02597c54-4fc5-4cc7-bb5d-3d4883d35266",
+              "label": "JavaScript"
+            },
+            {
+              "id": "4ec353c4-c5f4-4796-a9e8-1609017580da",
+              "label": "Java"
+            },
+            {
+              "id": "efeabc60-6b05-4486-afb3-a2a98e5f69ab",
+              "label": "Leadership"
+            },
+            {
+              "id": "209b63b3-f59a-42e6-81bd-1c81bb5bcdf5",
+              "label": "Management"
+            },
+            {
+              "id": "74c840aa-6bc9-48f9-a454-f1dc9b434c2e",
+              "label": "WordPress"
+            },
+            {
+              "id": "0dd40bf5-03bb-4d60-8f44-a46a3d44811a",
+              "label": "PHP"
+            },
+            {
+              "id": "7a4719a3-2857-4ae5-a44f-11d5a3ea91b5",
+              "label": "LEMP"
+            },
+            {
+              "id": "c1ed7242-9508-4373-90ea-b865487c3890",
+              "label": "Claude Code"
+            },
+            {
+              "id": "dd280ceb-5f92-4da8-8eaf-c4255cb72068",
+              "label": "MCP tooling"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "wQPca",
+          "name": "Created At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Xnlg9",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "yKtWe",
+          "name": "Recommended For",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "jlY4Kuae0x2iG7",
+          "inverseLinkFieldId": "U0SGB",
+          "defaultValue": null
+        },
+        {
+          "id": "wJ1nC",
+          "name": "Saves",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "v3cxPKO973nVxq",
+          "inverseLinkFieldId": "1WNQH",
+          "defaultValue": null
+        },
+        {
+          "id": "Rb6TP",
+          "name": "Company Size",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "3525fa1b-5e72-4ef2-8bd2-2b550c80c192",
+              "label": "1-10"
+            },
+            {
+              "id": "eaabeb1a-1f87-431a-a178-3bacf745e594",
+              "label": "11-50"
+            },
+            {
+              "id": "cad378ba-1819-48da-810b-32185f227667",
+              "label": "51-200"
+            },
+            {
+              "id": "0e00ece3-3cb7-4213-992c-d8b9b5a792b8",
+              "label": "201-500"
+            },
+            {
+              "id": "aad5273a-f61a-4849-85be-18ca0dc4075c",
+              "label": "501-1000"
+            },
+            {
+              "id": "34da8327-5ad6-4288-8dc8-345395619f6c",
+              "label": "1000+"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "zhgSV",
+          "name": "Required Skills",
+          "type": "SELECT",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "b7362004-598b-424a-9719-d9158195122e",
+              "label": "React"
+            },
+            {
+              "id": "950e8d2d-5ff9-449f-b124-c107a8c68395",
+              "label": "JavaScript"
+            },
+            {
+              "id": "6c01e1cc-3025-4512-8d9f-9215dc8eeb51",
+              "label": "TypeScript"
+            },
+            {
+              "id": "a7b20e1e-a7e4-4136-90c8-b898ba3b317d",
+              "label": "Python"
+            },
+            {
+              "id": "f8d72621-f182-4f79-bdd0-3b1e121f4dfe",
+              "label": "Node.js"
+            },
+            {
+              "id": "438b2154-765d-488b-a104-117f4450ed66",
+              "label": "SQL"
+            },
+            {
+              "id": "4fb9389d-9d80-4010-87b2-30be4f1fce4c",
+              "label": "AWS"
+            },
+            {
+              "id": "29b2a793-eadb-488a-a4fb-1ce89b0faa8c",
+              "label": "Docker"
+            },
+            {
+              "id": "1512d186-127b-4d16-8035-de5494269a60",
+              "label": "Kubernetes"
+            },
+            {
+              "id": "64d556b5-36ce-42e3-a273-8b6c8e6eb4a6",
+              "label": "Figma"
+            },
+            {
+              "id": "a9933b3f-7b43-48bd-b1c0-0022561c6378",
+              "label": "User Research"
+            },
+            {
+              "id": "5f83dd94-780d-4463-bd08-95254fb1a6de",
+              "label": "Product Strategy"
+            },
+            {
+              "id": "d4f49bfd-5384-46dc-82b2-18cf71fb051c",
+              "label": "Data Analysis"
+            },
+            {
+              "id": "a038e6b1-b105-414f-8e89-255366c006c9",
+              "label": "Machine Learning"
+            },
+            {
+              "id": "a158d8a7-4c08-4786-9c00-8ab500ca1dbe",
+              "label": "Salesforce"
+            },
+            {
+              "id": "a6b4c129-7486-45b8-a997-10fbe6e65240",
+              "label": "Marketing"
+            },
+            {
+              "id": "f83a60e3-f4d2-41dc-80d1-71d4e7ccd3e2",
+              "label": "Go"
+            },
+            {
+              "id": "caa85274-972d-43b0-8ca0-0d036d469559",
+              "label": "Java"
+            },
+            {
+              "id": "88e028e0-e037-43ad-a5c8-4d119791beb2",
+              "label": "HTML/CSS"
+            },
+            {
+              "id": "017de58a-b6ae-4635-a7a3-2f78ce77b428",
+              "label": "Leadership"
+            },
+            {
+              "id": "a888bd87-d91b-4554-aa6f-a07993e08f28",
+              "label": "Management"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "m348V",
+          "name": "External ID",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "NC9f8",
+          "name": "Last Seen At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "8paQw",
+          "name": "SEO:Index",
+          "type": "CHECKBOX",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "oWary",
+          "name": "SEO:Slug",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "JTXqU",
+          "name": "SEO:Title",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "WjYTI",
+          "name": "SEO:Description",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "PqSVr",
+          "name": "Social:Image",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "b0QJo",
+          "name": "Social:Title",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "JfC7P",
+          "name": "Social:Description",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        }
+      ]
+    },
+    {
+      "id": "v3cxPKO973nVxq",
+      "name": "Saved Jobs",
+      "fields": [
+        {
+          "id": "e9Y1b",
+          "name": "Saved Job Name",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "rlRAa",
+          "name": "Status",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "7c12c26a-d495-4321-b85b-c13910b2401d",
+              "label": "Saved"
+            },
+            {
+              "id": "f8e85095-40a1-4a42-8020-47c5c8fdd12e",
+              "label": "Draft Requested"
+            },
+            {
+              "id": "89fb4118-a156-4743-b9d0-d6ac1d85fa90",
+              "label": "Draft Ready"
+            },
+            {
+              "id": "d88de105-b172-48b1-8668-892430ac6b28",
+              "label": "Submitted"
+            },
+            {
+              "id": "10977fc6-9362-4d9b-8c59-7325ca3957fb",
+              "label": "Rejected"
+            },
+            {
+              "id": "e291aae9-deff-46b0-984a-80ba8598117c",
+              "label": "Offer"
+            },
+            {
+              "id": "272ce2ed-de07-4a9c-a17b-043ee09c8dcf",
+              "label": "Archived"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "gxH0q",
+          "name": "Priority",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "a4c9ceab-7f47-4186-9415-804834c44a49",
+              "label": "Low"
+            },
+            {
+              "id": "39c3a7aa-66e5-4302-bb44-6d3dc9f14da6",
+              "label": "Medium"
+            },
+            {
+              "id": "53437288-00f2-4339-80ca-15067f9db4b0",
+              "label": "High"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "tvEUH",
+          "name": "Notes",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "zLAYB",
+          "name": "Saved At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "2qIDL",
+          "name": "Last Activity At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "G5cxV",
+          "name": "Outcome Notes",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "3PFAm",
+          "name": "External Submission URL",
+          "type": "URL",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "2jlPC",
+          "name": "Archived",
+          "type": "CHECKBOX",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": false
+        },
+        {
+          "id": "pKLXK",
+          "name": "User",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "jlY4Kuae0x2iG7",
+          "inverseLinkFieldId": "Sc7CY",
+          "defaultValue": null
+        },
+        {
+          "id": "1WNQH",
+          "name": "Job",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "OAV7rxXGxAj2a1",
+          "inverseLinkFieldId": "wJ1nC",
+          "defaultValue": null
+        },
+        {
+          "id": "Rbf50",
+          "name": "Draft Applications",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": true,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "cvFoZD4aXb3YHJ",
+          "inverseLinkFieldId": "KxqMq",
+          "defaultValue": null
+        }
+      ]
+    },
+    {
+      "id": "cvFoZD4aXb3YHJ",
+      "name": "Draft Applications",
+      "fields": [
+        {
+          "id": "phce0",
+          "name": "Draft Title",
+          "type": "SINGLE_LINE_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "MPaUx",
+          "name": "Draft Status",
+          "type": "SELECT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [
+            {
+              "id": "e1f17d4a-beec-44d5-8a31-e74daed6cddb",
+              "label": "In Progress"
+            },
+            {
+              "id": "9a1fc4c8-3033-41e8-a929-5388a7d2419a",
+              "label": "Ready for Review"
+            },
+            {
+              "id": "322c28c0-7ddc-47ab-b175-653f3ddfa3ee",
+              "label": "Approved"
+            },
+            {
+              "id": "ce1a2960-b5f4-4889-930f-c103d53470a7",
+              "label": "Needs Edits"
+            }
+          ],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "qEJJe",
+          "name": "Selected Resume",
+          "type": "ATTACHMENT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "gL7sY",
+          "name": "Cover Letter",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Xmae7",
+          "name": "Short Answers",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "oiZvd",
+          "name": "Key Match Points",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "JQ95r",
+          "name": "Missing Info Questions",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Oqava",
+          "name": "Reviewer Notes",
+          "type": "LONG_TEXT",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "Ky7zP",
+          "name": "Generated At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "HtDsK",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": null,
+          "inverseLinkFieldId": null,
+          "defaultValue": null
+        },
+        {
+          "id": "KxqMq",
+          "name": "Saved Job",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "v3cxPKO973nVxq",
+          "inverseLinkFieldId": "Rbf50",
+          "defaultValue": null
+        },
+        {
+          "id": "0kz7P",
+          "name": "User",
+          "type": "LINKED_RECORD",
+          "allowMultipleEntries": false,
+          "required": false,
+          "readonly": false,
+          "choices": [],
+          "linkedTableId": "jlY4Kuae0x2iG7",
+          "inverseLinkFieldId": "gox5D",
+          "defaultValue": null
+        }
+      ]
+    }
+  ]
+}

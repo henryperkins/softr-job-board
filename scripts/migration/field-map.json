@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "sourceSchema": "fixtures/migration/source-schema.json",
+  "sourceFields": 90,
+  "notes": [
+    "All field values are retained by source field ID in legacy_record_snapshots.fields_json.",
+    "Full source-system IDs and timestamps are in legacy_id_map and legacy_record_snapshots. Mutable business dates are separate.",
+    "Attachment signed URLs and thumbnails remain only in the protected source archive; target snapshots contain safe metadata, target IDs and checksums.",
+    "Reverse relations are preserved as source evidence and reconstructed from validated owned forward foreign keys. They confer no access.",
+    "Role, shared fit scores and SEO/social values are retained without being treated as authorization, verified personalization or public-publishing instructions."
+  ],
+  "tables": [
+    {
+      "sourceTableId": "jlY4Kuae0x2iG7",
+      "name": "Users",
+      "fields": [
+        {
+          "sourceFieldId": "c63tL",
+          "name": "Email",
+          "type": "EMAIL",
+          "target": "users.email",
+          "retention": "legacy_record_snapshots.fields_json.c63tL"
+        },
+        {
+          "sourceFieldId": "o0JWv",
+          "name": "Name",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "users.name",
+          "retention": "legacy_record_snapshots.fields_json.o0JWv"
+        },
+        {
+          "sourceFieldId": "QH0S6",
+          "name": "Avatar",
+          "type": "ATTACHMENT",
+          "target": "attachments",
+          "retention": "legacy_record_snapshots.fields_json.QH0S6",
+          "transformation": "owner-scoped quarantined reference; expiring URLs removed from target"
+        },
+        {
+          "sourceFieldId": "z0b2k",
+          "name": "Role",
+          "type": "SELECT",
+          "target": "retained-only; never an authorization role",
+          "retention": "legacy_record_snapshots.fields_json.z0b2k"
+        },
+        {
+          "sourceFieldId": "zQwg2",
+          "name": "Candidate Profiles",
+          "type": "LINKED_RECORD",
+          "target": "candidate_profiles.user_id",
+          "retention": "legacy_record_snapshots.fields_json.zQwg2"
+        },
+        {
+          "sourceFieldId": "U0SGB",
+          "name": "Recommended Jobs",
+          "type": "LINKED_RECORD",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.U0SGB"
+        },
+        {
+          "sourceFieldId": "Sc7CY",
+          "name": "Saved Jobs",
+          "type": "LINKED_RECORD",
+          "target": "saved_jobs.user_id",
+          "retention": "legacy_record_snapshots.fields_json.Sc7CY"
+        },
+        {
+          "sourceFieldId": "gox5D",
+          "name": "Draft Applications",
+          "type": "LINKED_RECORD",
+          "target": "draft_applications.user_id",
+          "retention": "legacy_record_snapshots.fields_json.gox5D"
+        },
+        {
+          "sourceFieldId": "Ma5xR",
+          "name": "Target Roles",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.Ma5xR"
+        },
+        {
+          "sourceFieldId": "usRqT",
+          "name": "Location / Remote Preference",
+          "type": "SELECT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.usRqT"
+        },
+        {
+          "sourceFieldId": "9UHk9",
+          "name": "Employment Type",
+          "type": "SELECT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.9UHk9"
+        },
+        {
+          "sourceFieldId": "Eb3Gk",
+          "name": "Seniority",
+          "type": "SELECT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.Eb3Gk"
+        },
+        {
+          "sourceFieldId": "TBaRn",
+          "name": "Salary Range",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.TBaRn"
+        },
+        {
+          "sourceFieldId": "X0Xyi",
+          "name": "Skills",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.X0Xyi"
+        }
+      ]
+    },
+    {
+      "sourceTableId": "pGOkkyhqqf97c7",
+      "name": "Candidate Profile",
+      "fields": [
+        {
+          "sourceFieldId": "JsepF",
+          "name": "Full Name",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "candidate_profiles.name",
+          "retention": "legacy_record_snapshots.fields_json.JsepF"
+        },
+        {
+          "sourceFieldId": "STp8T",
+          "name": "Email",
+          "type": "EMAIL",
+          "target": "content.email",
+          "retention": "legacy_record_snapshots.fields_json.STp8T"
+        },
+        {
+          "sourceFieldId": "a6HnR",
+          "name": "Headline",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "content.headline",
+          "retention": "legacy_record_snapshots.fields_json.a6HnR"
+        },
+        {
+          "sourceFieldId": "s91mE",
+          "name": "Location",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "content.location",
+          "retention": "legacy_record_snapshots.fields_json.s91mE"
+        },
+        {
+          "sourceFieldId": "mQtF2",
+          "name": "Target Roles",
+          "type": "SELECT",
+          "target": "content.targetRoles",
+          "retention": "legacy_record_snapshots.fields_json.mQtF2"
+        },
+        {
+          "sourceFieldId": "kPJYk",
+          "name": "Skills",
+          "type": "SELECT",
+          "target": "content.skills",
+          "retention": "legacy_record_snapshots.fields_json.kPJYk"
+        },
+        {
+          "sourceFieldId": "ivALq",
+          "name": "Years of Experience",
+          "type": "NUMBER",
+          "target": "content.yearsOfExperience",
+          "retention": "legacy_record_snapshots.fields_json.ivALq"
+        },
+        {
+          "sourceFieldId": "PVhtG",
+          "name": "Portfolio URL",
+          "type": "URL",
+          "target": "content.portfolioUrl",
+          "retention": "legacy_record_snapshots.fields_json.PVhtG"
+        },
+        {
+          "sourceFieldId": "oybjv",
+          "name": "LinkedIn URL",
+          "type": "URL",
+          "target": "content.linkedinUrl",
+          "retention": "legacy_record_snapshots.fields_json.oybjv"
+        },
+        {
+          "sourceFieldId": "xItg1",
+          "name": "GitHub URL",
+          "type": "URL",
+          "target": "content.githubUrl",
+          "retention": "legacy_record_snapshots.fields_json.xItg1"
+        },
+        {
+          "sourceFieldId": "ANMOx",
+          "name": "Summary",
+          "type": "LONG_TEXT",
+          "target": "content.summary",
+          "retention": "legacy_record_snapshots.fields_json.ANMOx"
+        },
+        {
+          "sourceFieldId": "z5BqF",
+          "name": "Resume File",
+          "type": "ATTACHMENT",
+          "target": "attachments + content.attachmentReferences",
+          "retention": "legacy_record_snapshots.fields_json.z5BqF",
+          "transformation": "owner-scoped quarantined reference; expiring URLs removed from target"
+        },
+        {
+          "sourceFieldId": "XqXl3",
+          "name": "Additional Documents",
+          "type": "ATTACHMENT",
+          "target": "attachments + content.attachmentReferences",
+          "retention": "legacy_record_snapshots.fields_json.XqXl3",
+          "transformation": "owner-scoped quarantined reference; expiring URLs removed from target"
+        },
+        {
+          "sourceFieldId": "QSfxM",
+          "name": "Preferred Work Type",
+          "type": "SELECT",
+          "target": "content.preferredWorkType",
+          "retention": "legacy_record_snapshots.fields_json.QSfxM"
+        },
+        {
+          "sourceFieldId": "PAvUp",
+          "name": "Preferred Employment Type",
+          "type": "SELECT",
+          "target": "content.preferredEmploymentType",
+          "retention": "legacy_record_snapshots.fields_json.PAvUp"
+        },
+        {
+          "sourceFieldId": "u3v0Q",
+          "name": "Salary Minimum",
+          "type": "NUMBER",
+          "target": "content.salaryMinimum",
+          "retention": "legacy_record_snapshots.fields_json.u3v0Q"
+        },
+        {
+          "sourceFieldId": "fPK4m",
+          "name": "Created At",
+          "type": "DATETIME",
+          "target": "content.sourceBusinessCreatedAt",
+          "retention": "legacy_record_snapshots.fields_json.fPK4m"
+        },
+        {
+          "sourceFieldId": "aGnZ7",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "target": "content.sourceBusinessUpdatedAt",
+          "retention": "legacy_record_snapshots.fields_json.aGnZ7"
+        },
+        {
+          "sourceFieldId": "jEkaS",
+          "name": "Owner",
+          "type": "LINKED_RECORD",
+          "target": "candidate_profiles.user_id",
+          "retention": "legacy_record_snapshots.fields_json.jEkaS"
+        }
+      ]
+    },
+    {
+      "sourceTableId": "OAV7rxXGxAj2a1",
+      "name": "Job Listings",
+      "fields": [
+        {
+          "sourceFieldId": "FSayV",
+          "name": "Job Title",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "jobs.title",
+          "retention": "legacy_record_snapshots.fields_json.FSayV"
+        },
+        {
+          "sourceFieldId": "8FbKI",
+          "name": "Company",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "jobs.company",
+          "retention": "legacy_record_snapshots.fields_json.8FbKI"
+        },
+        {
+          "sourceFieldId": "b65iu",
+          "name": "Source",
+          "type": "SELECT",
+          "target": "job_versions.content_json.source",
+          "retention": "legacy_record_snapshots.fields_json.b65iu"
+        },
+        {
+          "sourceFieldId": "mIAha",
+          "name": "Source Job URL",
+          "type": "URL",
+          "target": "jobs.source_url",
+          "retention": "legacy_record_snapshots.fields_json.mIAha"
+        },
+        {
+          "sourceFieldId": "V9DKL",
+          "name": "Location",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "jobs.location",
+          "retention": "legacy_record_snapshots.fields_json.V9DKL"
+        },
+        {
+          "sourceFieldId": "nqBM6",
+          "name": "Remote Policy",
+          "type": "SELECT",
+          "target": "jobs.remote",
+          "retention": "legacy_record_snapshots.fields_json.nqBM6"
+        },
+        {
+          "sourceFieldId": "L391o",
+          "name": "Employment Type",
+          "type": "SELECT",
+          "target": "jobs.employment",
+          "retention": "legacy_record_snapshots.fields_json.L391o"
+        },
+        {
+          "sourceFieldId": "O5o9t",
+          "name": "Seniority",
+          "type": "SELECT",
+          "target": "jobs.seniority",
+          "retention": "legacy_record_snapshots.fields_json.O5o9t"
+        },
+        {
+          "sourceFieldId": "zSryi",
+          "name": "Salary Range Min",
+          "type": "NUMBER",
+          "target": "job_versions.content_json.salaryMinimum",
+          "retention": "legacy_record_snapshots.fields_json.zSryi"
+        },
+        {
+          "sourceFieldId": "diQfJ",
+          "name": "Salary Range Max",
+          "type": "NUMBER",
+          "target": "job_versions.content_json.salaryMaximum",
+          "retention": "legacy_record_snapshots.fields_json.diQfJ"
+        },
+        {
+          "sourceFieldId": "Q3LGs",
+          "name": "Description",
+          "type": "LONG_TEXT",
+          "target": "jobs.description",
+          "retention": "legacy_record_snapshots.fields_json.Q3LGs"
+        },
+        {
+          "sourceFieldId": "D5upg",
+          "name": "Requirements",
+          "type": "LONG_TEXT",
+          "target": "job_versions.content_json.requirements",
+          "retention": "legacy_record_snapshots.fields_json.D5upg"
+        },
+        {
+          "sourceFieldId": "tWFbv",
+          "name": "Posted Date",
+          "type": "DATETIME",
+          "target": "job_versions.content_json.postedDate",
+          "retention": "legacy_record_snapshots.fields_json.tWFbv"
+        },
+        {
+          "sourceFieldId": "DRtJ2",
+          "name": "Job Status",
+          "type": "SELECT",
+          "target": "jobs.status",
+          "retention": "legacy_record_snapshots.fields_json.DRtJ2"
+        },
+        {
+          "sourceFieldId": "XMuIF",
+          "name": "Tags",
+          "type": "SELECT",
+          "target": "job_versions.content_json.tags",
+          "retention": "legacy_record_snapshots.fields_json.XMuIF"
+        },
+        {
+          "sourceFieldId": "X2V8c",
+          "name": "Fit Score",
+          "type": "NUMBER",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.X2V8c"
+        },
+        {
+          "sourceFieldId": "4WR79",
+          "name": "Fit Summary",
+          "type": "LONG_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.4WR79"
+        },
+        {
+          "sourceFieldId": "BxJys",
+          "name": "Matched Skills",
+          "type": "SELECT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.BxJys"
+        },
+        {
+          "sourceFieldId": "wQPca",
+          "name": "Created At",
+          "type": "DATETIME",
+          "target": "job_versions.content_json.sourceBusinessCreatedAt",
+          "retention": "legacy_record_snapshots.fields_json.wQPca"
+        },
+        {
+          "sourceFieldId": "Xnlg9",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "target": "job_versions.content_json.sourceBusinessUpdatedAt",
+          "retention": "legacy_record_snapshots.fields_json.Xnlg9"
+        },
+        {
+          "sourceFieldId": "yKtWe",
+          "name": "Recommended For",
+          "type": "LINKED_RECORD",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.yKtWe"
+        },
+        {
+          "sourceFieldId": "wJ1nC",
+          "name": "Saves",
+          "type": "LINKED_RECORD",
+          "target": "saved_jobs.job_id",
+          "retention": "legacy_record_snapshots.fields_json.wJ1nC"
+        },
+        {
+          "sourceFieldId": "Rb6TP",
+          "name": "Company Size",
+          "type": "SELECT",
+          "target": "job_versions.content_json.companySize",
+          "retention": "legacy_record_snapshots.fields_json.Rb6TP"
+        },
+        {
+          "sourceFieldId": "zhgSV",
+          "name": "Required Skills",
+          "type": "SELECT",
+          "target": "job_versions.content_json.requiredSkills",
+          "retention": "legacy_record_snapshots.fields_json.zhgSV"
+        },
+        {
+          "sourceFieldId": "m348V",
+          "name": "External ID",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "job_versions.content_json.externalId",
+          "retention": "legacy_record_snapshots.fields_json.m348V"
+        },
+        {
+          "sourceFieldId": "NC9f8",
+          "name": "Last Seen At",
+          "type": "DATETIME",
+          "target": "job_versions.content_json.lastSeenAt",
+          "retention": "legacy_record_snapshots.fields_json.NC9f8"
+        },
+        {
+          "sourceFieldId": "8paQw",
+          "name": "SEO:Index",
+          "type": "CHECKBOX",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.8paQw"
+        },
+        {
+          "sourceFieldId": "oWary",
+          "name": "SEO:Slug",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.oWary"
+        },
+        {
+          "sourceFieldId": "JTXqU",
+          "name": "SEO:Title",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.JTXqU"
+        },
+        {
+          "sourceFieldId": "WjYTI",
+          "name": "SEO:Description",
+          "type": "LONG_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.WjYTI"
+        },
+        {
+          "sourceFieldId": "PqSVr",
+          "name": "Social:Image",
+          "type": "URL",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.PqSVr"
+        },
+        {
+          "sourceFieldId": "b0QJo",
+          "name": "Social:Title",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.b0QJo"
+        },
+        {
+          "sourceFieldId": "JfC7P",
+          "name": "Social:Description",
+          "type": "LONG_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.JfC7P"
+        }
+      ]
+    },
+    {
+      "sourceTableId": "v3cxPKO973nVxq",
+      "name": "Saved Jobs",
+      "fields": [
+        {
+          "sourceFieldId": "e9Y1b",
+          "name": "Saved Job Name",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.e9Y1b"
+        },
+        {
+          "sourceFieldId": "rlRAa",
+          "name": "Status",
+          "type": "SELECT",
+          "target": "saved_jobs.status",
+          "retention": "legacy_record_snapshots.fields_json.rlRAa"
+        },
+        {
+          "sourceFieldId": "gxH0q",
+          "name": "Priority",
+          "type": "SELECT",
+          "target": "saved_jobs.priority",
+          "retention": "legacy_record_snapshots.fields_json.gxH0q"
+        },
+        {
+          "sourceFieldId": "tvEUH",
+          "name": "Notes",
+          "type": "LONG_TEXT",
+          "target": "saved_jobs.notes",
+          "retention": "legacy_record_snapshots.fields_json.tvEUH"
+        },
+        {
+          "sourceFieldId": "zLAYB",
+          "name": "Saved At",
+          "type": "DATETIME",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.zLAYB"
+        },
+        {
+          "sourceFieldId": "2qIDL",
+          "name": "Last Activity At",
+          "type": "DATETIME",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.2qIDL"
+        },
+        {
+          "sourceFieldId": "G5cxV",
+          "name": "Outcome Notes",
+          "type": "LONG_TEXT",
+          "target": "saved_jobs.outcome_notes",
+          "retention": "legacy_record_snapshots.fields_json.G5cxV"
+        },
+        {
+          "sourceFieldId": "3PFAm",
+          "name": "External Submission URL",
+          "type": "URL",
+          "target": "saved_jobs.submission_url",
+          "retention": "legacy_record_snapshots.fields_json.3PFAm"
+        },
+        {
+          "sourceFieldId": "2jlPC",
+          "name": "Archived",
+          "type": "CHECKBOX",
+          "target": "validated against saved_jobs.status",
+          "retention": "legacy_record_snapshots.fields_json.2jlPC"
+        },
+        {
+          "sourceFieldId": "pKLXK",
+          "name": "User",
+          "type": "LINKED_RECORD",
+          "target": "saved_jobs.user_id",
+          "retention": "legacy_record_snapshots.fields_json.pKLXK"
+        },
+        {
+          "sourceFieldId": "1WNQH",
+          "name": "Job",
+          "type": "LINKED_RECORD",
+          "target": "saved_jobs.job_id",
+          "retention": "legacy_record_snapshots.fields_json.1WNQH"
+        },
+        {
+          "sourceFieldId": "Rbf50",
+          "name": "Draft Applications",
+          "type": "LINKED_RECORD",
+          "target": "draft_applications.saved_job_id",
+          "retention": "legacy_record_snapshots.fields_json.Rbf50"
+        }
+      ]
+    },
+    {
+      "sourceTableId": "cvFoZD4aXb3YHJ",
+      "name": "Draft Applications",
+      "fields": [
+        {
+          "sourceFieldId": "phce0",
+          "name": "Draft Title",
+          "type": "SINGLE_LINE_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.phce0"
+        },
+        {
+          "sourceFieldId": "MPaUx",
+          "name": "Draft Status",
+          "type": "SELECT",
+          "target": "draft_applications.status",
+          "retention": "legacy_record_snapshots.fields_json.MPaUx"
+        },
+        {
+          "sourceFieldId": "qEJJe",
+          "name": "Selected Resume",
+          "type": "ATTACHMENT",
+          "target": "attachments",
+          "retention": "legacy_record_snapshots.fields_json.qEJJe",
+          "transformation": "owner-scoped quarantined reference; expiring URLs removed from target"
+        },
+        {
+          "sourceFieldId": "gL7sY",
+          "name": "Cover Letter",
+          "type": "LONG_TEXT",
+          "target": "draft_applications.cover_letter",
+          "retention": "legacy_record_snapshots.fields_json.gL7sY"
+        },
+        {
+          "sourceFieldId": "Xmae7",
+          "name": "Short Answers",
+          "type": "LONG_TEXT",
+          "target": "draft_applications.short_answers",
+          "retention": "legacy_record_snapshots.fields_json.Xmae7"
+        },
+        {
+          "sourceFieldId": "oiZvd",
+          "name": "Key Match Points",
+          "type": "LONG_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.oiZvd"
+        },
+        {
+          "sourceFieldId": "JQ95r",
+          "name": "Missing Info Questions",
+          "type": "LONG_TEXT",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.JQ95r"
+        },
+        {
+          "sourceFieldId": "Oqava",
+          "name": "Reviewer Notes",
+          "type": "LONG_TEXT",
+          "target": "draft_applications.reviewer_notes",
+          "retention": "legacy_record_snapshots.fields_json.Oqava"
+        },
+        {
+          "sourceFieldId": "Ky7zP",
+          "name": "Generated At",
+          "type": "DATETIME",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.Ky7zP"
+        },
+        {
+          "sourceFieldId": "HtDsK",
+          "name": "Updated At",
+          "type": "DATETIME",
+          "target": "retained-only",
+          "retention": "legacy_record_snapshots.fields_json.HtDsK"
+        },
+        {
+          "sourceFieldId": "KxqMq",
+          "name": "Saved Job",
+          "type": "LINKED_RECORD",
+          "target": "draft_applications.saved_job_id",
+          "retention": "legacy_record_snapshots.fields_json.KxqMq"
+        },
+        {
+          "sourceFieldId": "0kz7P",
+          "name": "User",
+          "type": "LINKED_RECORD",
+          "target": "draft_applications.user_id",
+          "retention": "legacy_record_snapshots.fields_json.0kz7P"
+        }
+      ]
+    }
+  ]
+}

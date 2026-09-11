@@ -1,0 +1,41 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm typecheck:web
+      - run: pnpm typecheck:migration
+      - run: pnpm test:unit
+      - run: pnpm test:integration
+      - run: pnpm test:jobs
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - run: pnpm exec playwright test tests/e2e/generation.spec.ts
+        env:
+          SYNTHETIC_PORT: "8896"
+          SYNTHETIC_GENERATION: "true"
+      - run: pnpm exec playwright test tests/e2e/mcp.spec.ts
+        env:
+          SYNTHETIC_PORT: "8899"
+          SYNTHETIC_MCP: "true"
+          SYNTHETIC_MCP_WRITES: "true"
+          SYNTHETIC_MCP_GENERATION: "true"
+          SYNTHETIC_MCP_REVIEW: "true"

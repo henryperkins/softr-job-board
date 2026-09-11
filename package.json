@@ -1,0 +1,67 @@
+{
+  "name": "softr-job-board",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "scripts": {
+    "lint": "eslint workers/app/src packages/domain/src packages/data/src apps/web/src && eslint workers/jobs/src --config eslint.jobs.config.js",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.jobs.json",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:integration": "vitest run",
+    "test:security": "vitest run tests/integration/security.test.ts",
+    "build": "pnpm build:web && wrangler deploy --dry-run --env= --config workers/app/wrangler.jsonc --outdir ../../dist/worker && pnpm build:jobs",
+    "dev": "wrangler dev --config workers/app/wrangler.jsonc --local",
+    "cf:types": "wrangler types workers/app/worker-configuration.d.ts --config workers/app/wrangler.jsonc --include-runtime",
+    "build:web": "vite build --config apps/web/vite.config.ts",
+    "typecheck:web": "tsc -p apps/web/tsconfig.json",
+    "typecheck:migration": "tsc -p tsconfig.migration.json",
+    "preview:synthetic": "pnpm build:web && node tests/e2e/preview.mjs",
+    "test:e2e": "playwright test",
+    "test:user-flows": "vitest run tests/integration/user-flows.test.ts",
+    "migration:export": "node scripts/migration/export-softr.ts",
+    "migration:validate": "node scripts/migration/validate-export.ts",
+    "migration:attachments": "node scripts/migration/copy-attachments.ts",
+    "migration:rehearse": "node scripts/migration/rehearse.ts",
+    "migration:reconcile": "node scripts/migration/rehearse.ts",
+    "test:ingestion": "vitest run --config vitest.jobs.config.ts tests/jobs/ingestion.test.ts",
+    "test:generation": "vitest run --config vitest.jobs.config.ts tests/jobs/generation.test.ts",
+    "test:jobs": "vitest run --config vitest.jobs.config.ts",
+    "build:jobs": "wrangler deploy --dry-run --env= --config workers/jobs/wrangler.jsonc --outdir ../../dist/jobs",
+    "cf:types:jobs": "wrangler types workers/jobs/worker-configuration.d.ts --config workers/jobs/wrangler.jsonc --env-interface JobsBindings --strict-vars=false",
+    "ingestion:shadow": "node scripts/ingestion/shadow.ts",
+    "ingestion:inspect": "node scripts/ingestion/inspect.ts"
+  },
+  "dependencies": {
+    "@better-auth/mcp": "1.7.4",
+    "@better-auth/oauth-provider": "1.7.4",
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@modelcontextprotocol/server": "2.0.0",
+    "better-auth": "1.7.4",
+    "hono": "4.13.7",
+    "parse5": "8.0.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.22.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.12.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.1",
+    "eslint": "10.10.0",
+    "miniflare": "5.20260910.0-alpha",
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "vite": "8.3.0",
+    "vitest": "4.1.11",
+    "wrangler": "4.131.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "workerd": "1.20260911.1"
+    }
+  }
+}

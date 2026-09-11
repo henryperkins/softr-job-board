@@ -1,0 +1,138 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "job-board-jobs-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-11",
+  "compatibility_flags": ["nodejs_compat"],
+  "send_metrics": false,
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "INGESTION_SCHEDULE_ENABLED": "false",
+    "INGESTION_WRITES_ENABLED": "false",
+    "GENERATION_ENABLED": "false",
+    "CLOSURE_MAX_FRACTION": "0.1",
+    "CLOSURE_MAX_COUNT": "25",
+  },
+  "triggers": {
+    "crons": ["* * * * *"],
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": false,
+    },
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "job-board-db-local",
+      "database_id": "UNPROVISIONED_LOCAL_ONLY",
+      "migrations_dir": "../../packages/data/migrations",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PRIVATE_FILES",
+      "bucket_name": "job-board-private-local",
+    },
+  ],
+  "workflows": [
+    {
+      "binding": "INGEST_SOURCE",
+      "name": "job-board-ingest-local",
+      "class_name": "IngestSourceWorkflow",
+    },
+    {
+      "binding": "GENERATE_DRAFT",
+      "name": "job-board-generate-local",
+      "class_name": "GenerateDraftWorkflow",
+    },
+  ],
+  "env": {
+    "staging": {
+      "name": "job-board-jobs-staging",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "INGESTION_SCHEDULE_ENABLED": "false",
+        "INGESTION_WRITES_ENABLED": "false",
+        "GENERATION_ENABLED": "false",
+        "CLOSURE_MAX_FRACTION": "0.1",
+        "CLOSURE_MAX_COUNT": "25",
+      },
+      "triggers": {
+        "crons": ["* * * * *"],
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "job-board-db-staging",
+          "database_id": "UNPROVISIONED_STAGING",
+          "migrations_dir": "../../packages/data/migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "PRIVATE_FILES",
+          "bucket_name": "job-board-private-staging",
+        },
+      ],
+      "workflows": [
+        {
+          "binding": "INGEST_SOURCE",
+          "name": "job-board-ingest-staging",
+          "class_name": "IngestSourceWorkflow",
+        },
+        {
+          "binding": "GENERATE_DRAFT",
+          "name": "job-board-generate-staging",
+          "class_name": "GenerateDraftWorkflow",
+        },
+      ],
+    },
+    "production": {
+      "name": "job-board-jobs-production",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "INGESTION_SCHEDULE_ENABLED": "false",
+        "INGESTION_WRITES_ENABLED": "false",
+        "GENERATION_ENABLED": "false",
+        "CLOSURE_MAX_FRACTION": "0.1",
+        "CLOSURE_MAX_COUNT": "25",
+      },
+      "triggers": {
+        "crons": ["* * * * *"],
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "job-board-db-production",
+          "database_id": "UNPROVISIONED_PRODUCTION",
+          "migrations_dir": "../../packages/data/migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "PRIVATE_FILES",
+          "bucket_name": "job-board-private-production",
+        },
+      ],
+      "workflows": [
+        {
+          "binding": "INGEST_SOURCE",
+          "name": "job-board-ingest-production",
+          "class_name": "IngestSourceWorkflow",
+        },
+        {
+          "binding": "GENERATE_DRAFT",
+          "name": "job-board-generate-production",
+          "class_name": "GenerateDraftWorkflow",
+        },
+      ],
+    },
+  },
+}

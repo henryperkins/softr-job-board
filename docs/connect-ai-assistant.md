@@ -1,14 +1,58 @@
-# Connect your AI assistant to Softr
+# Connect an AI assistant
 
-This project is built on a Softr workspace. Connecting an AI assistant to Softr's
-[MCP](https://modelcontextprotocol.io) server lets it read and edit the job board's
-apps, databases and workflows directly, instead of you copying values between Studio
-and your editor.
+This repository has two distinct MCP surfaces. Choose the one that matches the work:
 
-Source of truth for anything not covered here: [Softr's connection guide](https://docs.softr.io/mcp/connect)
-and the [MCP server overview](https://docs.softr.io/mcp/overview).
+| Surface                        | Identity and authority                                                       | Intended work                                                              | Status                                                                               |
+| ------------------------------ | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Application user MCP           | One verified AI Jobs account, explicit OAuth consent and owner-scoped access | The user's own profiles, saved jobs, drafts and generation/review requests | Implemented and tested locally; disabled by default; no deployed endpoint is claimed |
+| Softr workspace administration | Softr workspace authorization selected by an operator                        | Historical source apps, databases, workflows and publication state         | Existing external Softr service declared in `.mcp.json`                              |
 
-## MCP server URL
+## Application user MCP
+
+The target application serves Streamable HTTP MCP at `<APP_ORIGIN>/mcp`. Replace `<APP_ORIGIN>` with the exact deployed HTTPS application origin only after an operator has verified that deployment. There is no live application URL to copy from this branch.
+
+The server uses OAuth authorization code with S256 PKCE and opaque access tokens. Dynamic Client Registration (DCR) is supported; Client ID Metadata Documents are deliberately not advertised because the Worker does not implement the DNS-pinned metadata transport needed to fetch arbitrary client metadata safely. Clients that require a pre-registered client ID are unsupported until an operator provisions one.
+
+### Codex CLI
+
+The following form was checked against local `codex-cli 0.154.0` help on September 11, 2026. Codex supports Streamable HTTP OAuth and an explicit `dcr` registration choice; see the current [Codex MCP documentation](https://developers.openai.com/codex/mcp). In PowerShell:
+
+```powershell
+$McpUrl = "https://replace-with-deployed-origin.example/mcp"
+codex mcp add ai-jobs --url $McpUrl --oauth-resource $McpUrl --oauth-client-registration dcr
+codex mcp login ai-jobs --oauth-client-registration dcr --scopes app:read,offline_access
+codex mcp get ai-jobs --json
+```
+
+The first example requests read-only access plus refresh capability. Request broader scopes only for work the user intends:
+
+| Scope             | Capability                                                                                                            |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `app:read`        | Read shared job postings and the signed-in user's profiles, saves and drafts                                          |
+| `app:write`       | Create/change the signed-in user's profiles, saves and draft text; cannot approve                                     |
+| `drafts:generate` | Queue a generation request under the separate generation readiness and quota gates; does not return a completed draft |
+| `drafts:review`   | Approve one exact owned draft revision                                                                                |
+| `offline_access`  | Receive a rotating refresh token so the client can stay connected until access is withdrawn                           |
+
+Codex displays the application's consent page in a browser. Confirm the client-supplied name and client ID, read each requested scope, then choose **Allow** or **Deny**. The application labels client names and websites as unverified text; it does not load a client logo or treat the stated website as trusted.
+
+To remove access, sign in to AI Jobs, open **Account → Connected applications**, and choose **Disconnect**. This deactivates the server-side grant generation and deletes that user's pending authorization codes, consent, opaque access tokens, and refresh tokens for the client in one transaction. Code and token persistence are bound to the generation captured before provider continuation, so issuance racing with disconnect is rejected. A later explicit consent advances the generation and cannot revive an older code, intent, access token, or refresh token. Removing the local Codex configuration with `codex mcp remove ai-jobs` does not replace server-side disconnect.
+
+Refresh tokens rotate with a strict zero-second reuse window. Reusing a rotated token is treated as replay and invalidates that rotation family; clients must retain the newest successful response and reconnect after an ambiguous retry.
+
+Application OAuth tokens are not Softr workspace tokens and there is no application personal-token fallback. A session cookie alone cannot call MCP. `MCP_ENABLED`, `MCP_WRITES_ENABLED`, `MCP_GENERATION_ENABLED`, and `MCP_REVIEW_ENABLED` are independent application-MCP release controls; ordinary writes and generation retain their own existing gates as well.
+
+### Other clients
+
+A compatible client must support remote Streamable HTTP MCP, OAuth authorization code with S256 PKCE, DCR for a public client, the RFC 8707 `resource` parameter, and the server's advertised scopes. Configure the exact `<APP_ORIGIN>/mcp` resource and complete consent in the browser. Client-specific setup that has not been verified against a deployed endpoint is intentionally omitted.
+
+## Historical Softr workspace administration
+
+The rest of this document describes Softr's external builder/workspace MCP. It can change source apps, database schemas, records and workflows. It does not act as an AI Jobs application user, and its credentials do not authorize the new application MCP.
+
+Source of truth for this surface: [Softr's connection guide](https://docs.softr.io/mcp/connect) and the [MCP server overview](https://docs.softr.io/mcp/overview). The dated [workspace inventory](softr-workspace.md) records what was inspected.
+
+## Softr workspace MCP server URL
 
 ```text
 https://mcp.softr.io/mcp
@@ -264,7 +308,7 @@ use their documented method to supply an `Authorization: Bearer` header.
 
 ## Connecting an app instead of a workspace
 
-This page covers connecting the *workspace* that builds the job board. If you want the job
+This page covers connecting the _workspace_ that builds the job board. If you want the job
 board's own users to work with it through their own assistant, carrying their own app
 permissions, that is a different server — see
 [App MCP server](https://docs.softr.io/app-mcp-server).

@@ -1,0 +1,9 @@
+# Local only: replace with a freshly generated random secret of at least 32 characters.
+BETTER_AUTH_SECRET=
+# Explicitly opt in to local business writes when developing.
+WRITES_ENABLED=false
+MAIL_MODE=disabled
+MCP_ENABLED=false
+MCP_WRITES_ENABLED=false
+MCP_GENERATION_ENABLED=false
+MCP_REVIEW_ENABLED=false
