@@ -6,6 +6,11 @@ The **[workspace inventory](docs/softr-workspace.md)** documents the databases, 
 status values, apps, pages, blocks, user permissions, workflows, and publication state
 inspected on September 8, 2026, including known gaps and unfinished features.
 
+The **[app review](docs/app-review-2026-09-11.md)** (September 11, 2026) builds on that
+inventory with prioritized findings and a suggested order of work. Most urgent: the job
+ingestion workflow has written nothing since September 8, and `/job-details` and `/profile`
+render hardcoded example content to signed-in users.
+
 ## Working on this project with an AI assistant
 
 The Softr workspace behind this project is reachable over the
