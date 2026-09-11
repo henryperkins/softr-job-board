@@ -1,0 +1,6 @@
+# Task 3 review brief
+Read parent-produced migration code against attached plan PR3, not against assumptions of completed production cutover. All code is uncommitted in isolated output worktree.
+Requirement: repeatable complete export via official Softr MCP, authoritative roster, retain all349source records and90fields without inventing data or activating accounts; private attachment bytes with size/signature/checksum/owner validation; explicit legacy mappings/system and mutable business dates; constrained importer with idempotent reruns, immutable snapshots, target drift protection and source-deletion disposition; actual local D1/R2 rehearsal with reconciliation and private output boundaries. Do not turn counts/structural success into a production gate.
+Main files scripts/migration/**, packages/data/migrations/0002_migration.sql, tsconfig.migration.json, tests/unit/**, tests/fixtures/source.mjs. Public source-schema fixture is sanitized field metadata only. Foundation0001schema is existing shared interface and may be read once to assess concrete SQL contracts.
+No remote writes, commits, activation, email or deployment. Use report for executed tests; independent review should not rerun suites absent a concrete unresolved doubt. Inspect no actual private archive.
+
