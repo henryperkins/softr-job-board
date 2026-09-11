@@ -1,6 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "job-board-app-local",
+  "account_id": "a77e479f6736120eadd99973dbeb705e",
   "send_metrics": false,
   "main": "src/index.ts",
   "compatibility_date": "2026-09-11",
@@ -82,6 +83,10 @@
     },
     "production": {
       "name": "job-board-app-production",
+      "routes": [
+        { "pattern": "www.lakefrontdev.com/*", "zone_id": "de68f60938e2ed51fc5269d1d421ceea" },
+        { "pattern": "lakefrontdev.com/*", "zone_id": "de68f60938e2ed51fc5269d1d421ceea" },
+      ],
       "send_email": [
         {
           "name": "EMAIL",
@@ -91,23 +96,23 @@
       "workers_dev": false,
       "preview_urls": false,
       "vars": {
-        "APP_ORIGIN": "https://production.invalid",
-        "MAIL_MODE": "disabled",
+        "APP_ORIGIN": "https://www.lakefrontdev.com",
+        "MAIL_MODE": "cloudflare",
         "MAIL_FROM": "no-reply@auth.lakefrontdev.com",
-        "WRITES_ENABLED": "false",
+        "WRITES_ENABLED": "true",
         "GENERATION_ENABLED": "false",
         "GENERATION_DAILY_LIMIT": "5",
         "GENERATION_INFLIGHT_LIMIT": "2",
-        "MCP_ENABLED": "false",
-        "MCP_WRITES_ENABLED": "false",
+        "MCP_ENABLED": "true",
+        "MCP_WRITES_ENABLED": "true",
         "MCP_GENERATION_ENABLED": "false",
-        "MCP_REVIEW_ENABLED": "false",
+        "MCP_REVIEW_ENABLED": "true",
       },
       "d1_databases": [
         {
           "binding": "DB",
           "database_name": "job-board-db-production",
-          "database_id": "UNPROVISIONED_PRODUCTION",
+          "database_id": "efc82cbe-a4f4-484f-8502-63f16cf44d1e",
           "migrations_dir": "../../packages/data/migrations",
         },
       ],

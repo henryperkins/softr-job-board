@@ -1,5 +1,25 @@
 # Handoff prompt
 
+## Current production checkpoint
+
+The user explicitly authorized production deployment to Cloudflare Workers, using the completed local results without redundant gates. The application is now deployed at **https://www.lakefrontdev.com**, with the apex redirected to canonical HTTPS while preserving paths and query strings. This current section supersedes deployment-stop instructions in the historical handoff below.
+
+Read [production-deployment-2026-09-11.md](production-deployment-2026-09-11.md) first. The application Worker version is `0ab09a92-0ba4-4c6d-857b-fa63169f20a3`; the jobs Worker version is `7b78d143-5f82-4f4b-a565-922323c96a89`. Both use D1 `efc82cbe-a4f4-484f-8502-63f16cf44d1e` and private R2 `job-board-private-production`.
+
+All seven migrations are applied. Migration 0007 required equivalent SQL expressions because D1's remote parser rejected CASE expressions inside triggers. The final six OAuth triggers are present; a focused remote check accepted an ordinary reset value and rejected an authorization code without an active grant. Do not reapply the migration over production.
+
+The 295 public jobs from the September 11 archive were imported with versions, source attribution and legacy URL mappings. No accounts, private profiles, drafts or attachment bytes were imported. Regular email/password signup, native mail from `no-reply@auth.lakefrontdev.com`, ordinary user writes and MCP read/write/review are enabled. Generation, MCP generation and scheduled ingestion are disabled; no provider key was available.
+
+The fresh auth secret is stored in the Cloudflare Worker secret binding. A local recovery copy is in task-root `work/private-source/production-auth-secrets.json`; never print or commit it. The catalog import SQL and one-time preparation helper remain local. The existing Softr source and historical private archive are retained; production's public catalog is a snapshot, not ongoing synchronization.
+
+The new edge serves the login page and assets, advertises the correct MCP resource, returns a signed-out session and refuses unauthenticated private API access. Real email receipt and an authenticated user journey were not repeated during deployment. Do not claim those as newly verified. Do not restart broad suites, Actions investigations or previous release checklists without a concrete task requiring them.
+
+The branch is `codex/cloudflare-migration`. The production configuration and this report are committed after documentation commit `2679c9d`. Preserve unrelated resources and work. Any later rollback must preserve accepted production writes; do not blindly route returning users back to Softr or restore an empty database.
+
+## Historical handoff before production deployment
+
+The remainder records the earlier accepted checkpoint and is superseded by the production update above where state or instructions differ.
+
 Resume from the **published Phase 1–7 implementation** for the Softr-to-Cloudflare migration, commit `0c18a2a6a9fdf73aa5614c0bad224d60ec892f01` on `codex/cloudflare-migration`. All original Phase 7 findings R1–R7 are closed. There is no active implementation or review subtask and nothing has been deployed.
 
 The user stopped staging preparation with “Don't waste your time with that,” then authorized committing and pushing the work. The implementation was published; the latest request explicitly adds documentation, handoff and progress reports and forbids time-consuming gates or verification. **Staging preparation remains stopped.** Do not reopen accepted work without a concrete new issue. Proceed with subsequent work only within the user's next authorized scope.

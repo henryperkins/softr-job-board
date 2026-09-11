@@ -1,6 +1,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "job-board-jobs-local",
+  "account_id": "a77e479f6736120eadd99973dbeb705e",
   "main": "src/index.ts",
   "compatibility_date": "2026-09-11",
   "compatibility_flags": ["nodejs_compat"],
@@ -111,7 +112,7 @@
         {
           "binding": "DB",
           "database_name": "job-board-db-production",
-          "database_id": "UNPROVISIONED_PRODUCTION",
+          "database_id": "efc82cbe-a4f4-484f-8502-63f16cf44d1e",
           "migrations_dir": "../../packages/data/migrations",
         },
       ],

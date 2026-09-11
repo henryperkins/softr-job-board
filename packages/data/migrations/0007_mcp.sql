@@ -34,6 +34,8 @@ CREATE TABLE oauthClientAssertion (id TEXT PRIMARY KEY, expiresAt INTEGER NOT NU
 -- authorization-code and token persistence. An intent captures the active
 -- user/client/session grant before the provider continues. Code and token rows
 -- can then be persisted only while that exact epoch is still active.
+-- D1's remote SQL splitter misreads CASE ... END inside trigger definitions.
+-- Use equivalent boolean expressions, iif(), and RAISE ... WHERE instead.
 CREATE TABLE oauthGrantEpoch (
  userId TEXT NOT NULL REFERENCES auth_user(id) ON DELETE CASCADE,
  clientId TEXT NOT NULL REFERENCES oauthClient(clientId) ON DELETE CASCADE,
@@ -65,7 +67,7 @@ BEGIN
  INSERT INTO oauthGrantEpoch(userId,clientId,epoch,active,updatedAt)
  VALUES(NEW.userId,NEW.clientId,1,1,unixepoch()*1000)
  ON CONFLICT(userId,clientId) DO UPDATE SET
-  epoch=oauthGrantEpoch.epoch+CASE WHEN oauthGrantEpoch.active=0 THEN 1 ELSE 0 END,
+  epoch=oauthGrantEpoch.epoch+(oauthGrantEpoch.active=0),
   active=1,updatedAt=unixepoch()*1000;
 END;
 
@@ -73,15 +75,15 @@ CREATE TRIGGER oauth_consent_deactivates_grant AFTER DELETE ON oauthConsent
 WHEN OLD.userId IS NOT NULL
 BEGIN
  UPDATE oauthGrantEpoch SET
-  active=CASE WHEN EXISTS(SELECT 1 FROM oauthConsent WHERE userId=OLD.userId AND clientId=OLD.clientId) THEN 1 ELSE 0 END,
+  active=EXISTS(SELECT 1 FROM oauthConsent WHERE userId=OLD.userId AND clientId=OLD.clientId),
   updatedAt=unixepoch()*1000
  WHERE userId=OLD.userId AND clientId=OLD.clientId;
 END;
 
 CREATE TRIGGER oauth_authorization_code_requires_active_grant BEFORE INSERT ON auth_verification
-WHEN CASE WHEN json_valid(NEW.value) THEN json_extract(NEW.value,'$.type')='authorization_code' ELSE 0 END
+WHEN json_extract(iif(json_valid(NEW.value),NEW.value,'{}'),'$.type')='authorization_code'
 BEGIN
- SELECT CASE WHEN NOT EXISTS(
+ SELECT RAISE(ABORT,'oauth_grant_inactive') WHERE NOT EXISTS(
   SELECT 1 FROM oauthAuthorizationIntent i
   JOIN oauthGrantEpoch g ON g.userId=i.userId AND g.clientId=i.clientId
   WHERE i.userId=json_extract(NEW.value,'$.userId')
@@ -94,11 +96,11 @@ BEGIN
    AND i.state=COALESCE(json_extract(NEW.value,'$.query.state'),'')
    AND i.expiresAt>=unixepoch()*1000
    AND i.expectedEpoch=g.epoch AND g.active=1
- ) THEN RAISE(ABORT,'oauth_grant_inactive') END;
+ );
 END;
 
 CREATE TRIGGER oauth_authorization_code_binds_grant AFTER INSERT ON auth_verification
-WHEN CASE WHEN json_valid(NEW.value) THEN json_extract(NEW.value,'$.type')='authorization_code' ELSE 0 END
+WHEN json_extract(iif(json_valid(NEW.value),NEW.value,'{}'),'$.type')='authorization_code'
 BEGIN
  INSERT INTO oauthAuthorizationCodeGrant(authorizationCodeId,userId,clientId,sessionId,epoch,createdAt)
  SELECT NEW.identifier,i.userId,i.clientId,i.sessionId,i.expectedEpoch,unixepoch()*1000
@@ -117,22 +119,22 @@ END;
 CREATE TRIGGER oauth_access_token_requires_active_grant BEFORE INSERT ON oauthAccessToken
 WHEN NEW.userId IS NOT NULL
 BEGIN
- SELECT CASE WHEN NOT EXISTS(
+ SELECT RAISE(ABORT,'oauth_grant_inactive') WHERE NOT EXISTS(
   SELECT 1 FROM oauthAuthorizationCodeGrant c
   JOIN oauthGrantEpoch g ON g.userId=c.userId AND g.clientId=c.clientId
   WHERE c.authorizationCodeId=NEW.authorizationCodeId
    AND c.userId=NEW.userId AND c.clientId=NEW.clientId
    AND c.sessionId=NEW.sessionId AND c.epoch=g.epoch AND g.active=1
- ) THEN RAISE(ABORT,'oauth_grant_inactive') END;
+ );
 END;
 
 CREATE TRIGGER oauth_refresh_token_requires_active_grant BEFORE INSERT ON oauthRefreshToken
 BEGIN
- SELECT CASE WHEN NOT EXISTS(
+ SELECT RAISE(ABORT,'oauth_grant_inactive') WHERE NOT EXISTS(
   SELECT 1 FROM oauthAuthorizationCodeGrant c
   JOIN oauthGrantEpoch g ON g.userId=c.userId AND g.clientId=c.clientId
   WHERE c.authorizationCodeId=NEW.authorizationCodeId
    AND c.userId=NEW.userId AND c.clientId=NEW.clientId
    AND c.sessionId=NEW.sessionId AND c.epoch=g.epoch AND g.active=1
- ) THEN RAISE(ABORT,'oauth_grant_inactive') END;
+ );
 END;

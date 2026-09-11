@@ -1,5 +1,17 @@
 # Softr → Cloudflare migration progress
 
+## Production update — September 11, 2026, 18:44 UTC
+
+**Deployed to Cloudflare Workers at [www.lakefrontdev.com](https://www.lakefrontdev.com).** Both production Workers, dedicated D1 and private R2, all seven migrations, the authentication secret, email binding and production routing are configured. The 295-job public catalog is imported. Fresh accounts are enabled; historical accounts and private records were not imported.
+
+Login HTML, JavaScript/CSS assets, MCP discovery, signed-out session behavior and the protected jobs API responded as expected at the Cloudflare edge. The apex returns a 308 redirect preserving paths and query strings. DNS caches may temporarily retain the previous origin.
+
+Generation and scheduled ingestion remain disabled because provider credentials were not supplied. Real inbox delivery and a full authenticated browser journey were not exercised during this deployment. No broad test suites, audits or CI gates were rerun.
+
+See the [production deployment report](production-deployment-2026-09-11.md) for exact Worker versions, resources, the D1 parsing repair and recovery details. This update supersedes deployment-stop and pre-publication statements in the historical checkpoint below.
+
+## Historical Phase 1–7 checkpoint
+
 Updated September 11, 2026.
 
 **Phases 1–7 are implemented, independently reviewed, committed and pushed. All seven Phase 7 findings are closed. Nothing has been deployed. Staging preparation remains stopped.**

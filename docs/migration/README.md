@@ -1,6 +1,8 @@
 # Migration documentation
 
-Phases 1–7 are implemented and reviewed. The application was committed and pushed in [`0c18a2a`](https://github.com/henryperkins/softr-job-board/commit/0c18a2a6a9fdf73aa5614c0bad224d60ec892f01). Deployment and staging preparation remain stopped.
+The application is deployed to production at [www.lakefrontdev.com](https://www.lakefrontdev.com). The user explicitly authorized production deployment after the Phase 1–7 implementation and documentation were published.
+
+- [Production deployment report](production-deployment-2026-09-11.md)
 
 - [Progress report](progress-report-2026-09-11.md)
 - [Handoff prompt](handoff-prompt-2026-09-11.md)
@@ -9,6 +11,6 @@ Phases 1–7 are implemented and reviewed. The application was committed and pus
 - [Phase reports, reviews and historical briefs](reports/)
 - [Historical Phase 8 staging checklist](phase-8-staging-checklist-2026-09-11.md)
 
-The reports preserve the original implementation history. Earlier instructions, pending findings, local paths and pre-publication Git states describe their respective checkpoints; the progress report and handoff reflect the subsequent Git publication. The Phase 8 checklist is historical preparation, not authorization to resume deployment.
+The reports preserve the original implementation history. Earlier instructions, pending findings, local paths and pre-publication Git states describe their respective checkpoints. The production report and current handoff update supersede earlier statements that deployment was stopped. The staging checklist remains historical; no staging environment was provisioned.
 
-This documentation publication runs no tests, audits, CI investigations or release gates.
+The production deployment reused the completed local test results. Only deployment operations, a focused repair of D1's remote trigger parsing, and brief live deployment checks were performed.
